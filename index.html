@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VĒLORA — Future in Form</title>
+
+<meta name="description" content="VĒLORA is a contemporary fashion label exploring futuristic silhouettes, elevated essentials and modern luxury.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ice-white: #F4F8FC;
+  --white: #FFFFFF;
+  --silver: #DCE3EA;
+  --chrome: #929EAC;
+  --midnight: #101927;
+  --ice-blue: #91DFFF;
+  --blue-deep: #426B88;
+  --muted: #6F7C8D;
+  --line: rgba(16, 25, 39, 0.12);
+
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--ice-white);
+  color: var(--midnight);
+  overflow-x: hidden;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 4px;
+}
+
+.announcement {
+  min-height: 34px;
+  background: var(--midnight);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.announcement span {
+  color: var(--ice-blue);
+}
+
+.header {
+  height: 76px;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background: rgba(244, 248, 252, 0.92);
+  backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-link {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: "";
+  height: 1px;
+  width: 0;
+  background: var(--midnight);
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: width .3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 5px;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--blue-deep);
+}
+
+.icon-button {
+  background: transparent;
+  border: 0;
+  color: var(--midnight);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.bag-count {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--ice-blue);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  color: var(--midnight);
+}
+
+.menu-button {
+  display: none;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 650px;
+  height: min(760px, calc(100svh - 110px));
+  max-height: 850px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--silver);
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  animation: heroReveal 1.3s ease both;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 19, 31, .68) 0%,
+      rgba(10, 19, 31, .20) 52%,
+      rgba(10, 19, 31, .03) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(10, 19, 31, .52),
+      transparent 55%
+    );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 0 7% 75px;
+  width: 100%;
+  animation: contentReveal 1s .2s both;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 9px;
+  margin-bottom: 24px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 27px;
+  height: 1px;
+  background: var(--ice-blue);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(55px, 9.2vw, 128px);
+  line-height: .89;
+  letter-spacing: -.075em;
+  max-width: 950px;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--ice-blue);
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-top: 34px;
+}
+
+.hero-description {
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 330px;
+  color: rgba(255,255,255,.8);
+}
+
+.button {
+  min-height: 49px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 22px;
+  background: var(--ice-blue);
+  color: var(--midnight);
+  border: 1px solid var(--ice-blue);
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-size: 10px;
+  font-weight: 700;
+  transition: background .3s, color .3s, transform .3s;
+}
+
+.button:hover {
+  background: white;
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+.button-dark {
+  background: var(--midnight);
+  border-color: var(--midnight);
+  color: white;
+}
+
+.button-dark:hover {
+  background: var(--blue-deep);
+  border-color: var(--blue-deep);
+}
+
+.hero-index {
+  position: absolute;
+  right: 5%;
+  top: 45%;
+  color: white;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+/* MOVING STRIP */
+
+.marquee {
+  background: var(--ice-blue);
+  overflow: hidden;
+  padding: 16px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-item {
+  padding: 0 28px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee-item span {
+  padding-left: 45px;
+  color: var(--blue-deep);
+}
+
+/* SECTION BASICS */
+
+.section {
+  padding: 100px 6%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.section-kicker {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 63px);
+  font-weight: 500;
+  letter-spacing: -.06em;
+  line-height: 1;
+}
+
+.text-link {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--midnight);
+  padding-bottom: 7px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.text-link span {
+  transition: transform .3s;
+}
+
+.text-link:hover span {
+  transform: translateX(5px);
+}
+
+/* PRODUCTS */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  min-width: 0;
+  position: relative;
+}
+
+.product-image-wrap {
+  background: var(--silver);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.055);
+}
+
+.product-badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 7px 9px;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(8px);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quick-view {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  padding: 14px;
+  border: 0;
+  background: rgba(244,248,252,.95);
+  color: var(--midnight);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 9px;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: .3s ease;
+}
+
+.product-card:hover .quick-view,
+.quick-view:focus-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 15px;
+}
+
+.product-name {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.product-category {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.product-price {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.product-swatches {
+  display: flex;
+  gap: 5px;
+  margin-top: 11px;
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(16,25,39,.16);
+}
+
+/* FEATURE */
+
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 620px;
+  background: var(--silver);
+}
+
+.feature-image-wrap {
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.feature-image {
+  height: 100%;
+  min-height: 500px;
+  transition: transform 1s ease;
+}
+
+.feature-image-wrap:hover .feature-image {
+  transform: scale(1.03);
+}
+
+.feature-content {
+  padding: 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.feature-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(43px, 6vw, 80px);
+  font-weight: 500;
+  line-height: .94;
+  letter-spacing: -.075em;
+  margin-bottom: 25px;
+}
+
+.feature-content h2 span {
+  color: var(--blue-deep);
+}
+
+.feature-content p {
+  color: #526173;
+  font-size: 12px;
+  line-height: 2;
+  max-width: 350px;
+  margin-bottom: 30px;
+}
+
+/* STATEMENT */
+
+.statement {
+  background: var(--midnight);
+  color: white;
+  text-align: center;
+  padding: 120px 8%;
+  position: relative;
+  overflow: hidden;
+}
+
+.statement::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: var(--ice-blue);
+  filter: blur(180px);
+  opacity: .12;
+  top: -250px;
+  left: calc(50% - 200px);
+}
+
+.statement .section-kicker {
+  color: var(--ice-blue);
+  position: relative;
+}
+
+.statement h2 {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 7vw, 85px);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -.07em;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.statement h2 span {
+  color: var(--ice-blue);
+}
+
+.statement p {
+  color: #B7C5D4;
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 410px;
+  margin: 25px auto 0;
+}
+
+/* EDITORIAL */
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 24px;
+}
+
+.editorial-card {
+  position: relative;
+  min-height: 440px;
+  background: var(--silver);
+  overflow: hidden;
+}
+
+.editorial-card img {
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  transition: transform .8s;
+}
+
+.editorial-card:hover img {
+  transform: scale(1.04);
+}
+
+.editorial-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(16,25,39,.75), transparent 65%);
+}
+
+.editorial-copy {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  right: 28px;
+  z-index: 2;
+  color: white;
+}
+
+.editorial-copy p {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ice-blue);
+  margin-bottom: 10px;
+}
+
+.editorial-copy h3 {
+  font-family: var(--font-display);
+  font-size: clamp(27px, 4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -.05em;
+}
+
+/* NEWSLETTER */
+
+.newsletter {
+  background: var(--silver);
+  padding: 90px 6%;
+  text-align: center;
+}
+
+.newsletter .section-kicker {
+  margin-bottom: 18px;
+}
+
+.newsletter h2 {
+  font-family: var(--font-display);
+  font-size: clamp(35px, 5vw, 58px);
+  font-weight: 500;
+  letter-spacing: -.06em;
+}
+
+.newsletter p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 380px;
+  margin: 17px auto 27px;
+}
+
+.newsletter-form {
+  display: flex;
+  max-width: 430px;
+  margin: auto;
+  border-bottom: 1px solid var(--midnight);
+}
+
+.newsletter-form input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  padding: 14px 0;
+  font-size: 12px;
+}
+
+.newsletter-form button {
+  border: 0;
+  background: transparent;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.newsletter-message {
+  min-height: 20px;
+  margin-top: 15px;
+  font-size: 11px;
+}
+
+/* FOOTER */
+
+.footer {
+  background: var(--midnight);
+  color: white;
+  padding: 65px 6% 25px;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 35px;
+  padding-bottom: 60px;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.footer-intro p {
+  color: #A5B2C1;
+  font-size: 11px;
+  line-height: 1.9;
+  max-width: 240px;
+  margin-top: 17px;
+}
+
+.footer-column h4 {
+  color: var(--ice-blue);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.footer-column a {
+  display: block;
+  color: #D5DCE4;
+  font-size: 11px;
+  margin-bottom: 14px;
+  transition: color .2s;
+}
+
+.footer-column a:hover {
+  color: var(--ice-blue);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.13);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #9CA9B8;
+  font-size: 9px;
+  letter-spacing: .5px;
+}
+
+/* CART */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7,14,23,.5);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  z-index: 201;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(440px, 100%);
+  background: var(--ice-white);
+  transform: translateX(105%);
+  transition: transform .35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.active {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 25px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header h2 {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.close-button {
+  border: 0;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.empty-cart {
+  text-align: center;
+  color: var(--muted);
+  padding: 70px 15px;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 85px 1fr auto;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.cart-item img {
+  height: 110px;
+  object-fit: cover;
+}
+
+.cart-item h4 {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.cart-item p {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+
+.cart-item button {
+  border: 0;
+  background: transparent;
+  color: var(--blue-deep);
+  text-decoration: underline;
+  font-size: 10px;
+}
+
+.cart-footer {
+  padding: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.cart-footer .button {
+  width: 100%;
+}
+
+/* QUICK VIEW */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(7,14,23,.65);
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-panel {
+  width: min(780px, 100%);
+  max-height: 92svh;
+  overflow-y: auto;
+  background: var(--ice-white);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal-image {
+  min-height: 420px;
+  height: 100%;
+}
+
+.modal-details {
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal-details .section-kicker {
+  margin-bottom: 12px;
+}
+
+.modal-details h2 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  letter-spacing: -.04em;
+  font-weight: 500;
+}
+
+.modal-price {
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.modal-description {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.9;
+  margin: 20px 0;
+}
+
+.size-label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.sizes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.size-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 11px;
+}
+
+.size-button.selected {
+  background: var(--midnight);
+  color: white;
+}
+
+.modal-details .button {
+  width: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  z-index: 2;
+  right: 15px;
+  top: 15px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  font-size: 23px;
+}
+
+/* TOAST */
+
+.toast {
+  position: fixed;
+  z-index: 500;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: var(--midnight);
+  color: white;
+  padding: 14px 20px;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+  text-align: center;
+  width: max-content;
+  max-width: calc(100% - 30px);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ANIMATIONS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes heroReveal {
+  from { transform: scale(1.05); opacity: .7; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes contentReveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+  .nav-left {
+    gap: 14px;
+  }
+
+  .nav-link {
+    font-size: 9px;
+    letter-spacing: .8px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 15px;
+  }
+
+  .feature {
+    min-height: 520px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  .footer-intro {
+    grid-column: 1 / -1;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .announcement {
+    font-size: 8px;
+    letter-spacing: 1.2px;
+  }
+
+  .header {
+    height: 65px;
+    padding: 0 5%;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .menu-button {
+    display: block;
+    justify-self: start;
+  }
+
+  .logo {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
+
+  .nav-left {
+    position: fixed;
+    top: 99px;
+    left: 0;
+    width: 100%;
+    background: var(--ice-white);
+    padding: 25px 6% 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-150%);
+    visibility: hidden;
+    transition: .3s;
+    z-index: 99;
+  }
+
+  .nav-left.active {
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .nav-left .nav-link {
+    font-size: 12px;
+  }
+
+  .nav-right {
+    gap: 0;
+  }
+
+  .bag-label {
+    display: none;
+  }
+
+  .hero {
+    min-height: 650px;
+    height: 78svh;
+    max-height: 790px;
+  }
+
+  .hero-image {
+    object-position: 58% center;
+  }
+
+  .hero::after {
+    background:
+      linear-gradient(0deg, rgba(10,19,31,.8), rgba(10,19,31,.02) 85%),
+      linear-gradient(90deg, rgba(10,19,31,.2), transparent);
+  }
+
+  .hero-content {
+    padding: 0 6% 44px;
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 14vw, 88px);
+  }
+
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    margin-top: 24px;
+  }
+
+  .hero-description {
+    font-size: 11px;
+    max-width: 280px;
+  }
+
+  .hero-index {
+    display: none;
+  }
+
+  .section {
+    padding: 70px 5%;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 25px;
+  }
+
+  .section-heading h2 {
+    font-size: 43px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 11px;
+  }
+
+  .product-name {
+    font-size: 11px;
+  }
+
+  .product-price {
+    font-size: 10px;
+  }
+
+  .product-image-wrap {
+    aspect-ratio: 3 / 4.3;
+  }
+
+  .quick-view {
+    opacity: 1;
+    transform: none;
+    bottom: 7px;
+    left: 7px;
+    right: 7px;
+    padding: 12px 5px;
+    font-size: 8px;
+  }
+
+  .product-badge {
+    left: 7px;
+    top: 7px;
+    font-size: 7px;
+  }
+
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-image-wrap,
+  .feature-image {
+    min-height: 450px;
+    height: 450px;
+  }
+
+  .feature-content {
+    padding: 55px 6%;
+  }
+
+  .feature-content h2 {
+    font-size: 58px;
+  }
+
+  .statement {
+    padding: 85px 6%;
+  }
+
+  .editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .editorial-card {
+    min-height: 410px;
+  }
+
+  .newsletter {
+    padding: 75px 6%;
+  }
+
+  .footer {
+    padding: 50px 6% 25px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 20px;
+    padding-bottom: 40px;
+  }
+
+  .footer-intro {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    font-size: 8px;
+  }
+
+  .modal-panel {
+    grid-template-columns: 1fr;
+    width: min(440px, 100%);
+  }
+
+  .modal-image {
+    height: 280px;
+    min-height: 280px;
+  }
+
+  .modal-details {
+    padding: 24px;
+  }
+
+  .modal-details h2 {
+    font-size: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  COMPLIMENTARY SHIPPING ON ORDERS OVER €150
+  <span>&nbsp; — &nbsp; COLLECTION 001</span>
+</div>
+
+<header class="header">
+
+  <button class="menu-button" id="menuButton"
+          aria-label="Open navigation"
+          aria-expanded="false">
+    ☰
+  </button>
+
+  <nav class="nav-left" id="mainNav">
+    <a class="nav-link" href="#collection">Shop</a>
+    <a class="nav-link" href="#campaign">Campaign</a>
+    <a class="nav-link" href="#story">Our World</a>
+  </nav>
+
+  <a href="#" class="logo" aria-label="VĒLORA home">
+    VĒLORA<span>.</span>
+  </a>
+
+  <div class="nav-right">
+    <button class="icon-button" id="openCart" aria-label="Open shopping bag">
+      <span class="bag-label">Bag</span>
+      <span class="bag-count" id="bagCount">0</span>
+    </button>
+  </div>
+
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <img
+      class="hero-image"
+      src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2200&q=90"
+      alt="Contemporary fashion editorial"
+      fetchpriority="high"
+    >
+
+    <div class="hero-content">
+      <div class="eyebrow">VĒLORA / Collection 001</div>
+
+      <h1>
+        FUTURE
+        <span>IN FORM.</span>
+      </h1>
+
+      <div class="hero-bottom">
+        <p class="hero-description">
+          A new perspective on contemporary dressing.
+          Designed for movement, defined by form,
+          created beyond the ordinary.
+        </p>
+
+        <a class="button" href="#collection">
+          Discover the collection <span>↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-index">01 / THE NEW FORM</div>
+
+  </section>
+
+  <!-- MOVING TEXT -->
+
+  <div class="marquee" aria-label="VĒLORA contemporary fashion">
+    <div class="marquee-track">
+      <div class="marquee-item">
+        FUTURE IN FORM <span>✳</span>
+        MODERN UNIFORM <span>✳</span>
+        BUILT TO MOVE <span>✳</span>
+      </div>
+
+      <div class="marquee-item" aria-hidden="true">
+        FUTURE IN FORM <span>✳</span>
+        MODERN UNIFORM <span>✳</span>
+        BUILT TO MOVE <span>✳</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLECTION -->
+
+  <section class="section reveal" id="collection">
+
+    <div class="section-heading">
+      <div>
+        <div class="section-kicker">01 — Curated essentials</div>
+        <h2>THE NEW<br>UNIFORM.</h2>
+      </div>
+
+      <a class="text-link" href="#collection">
+        Explore collection <span>↗</span>
+      </a>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+
+  </section>
+
+  <!-- FEATURE -->
+
+  <section class="feature reveal" id="campaign">
+
+    <div class="feature-image-wrap">
+      <img
+        class="feature-image"
+        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85"
+        alt="VĒLORA fashion campaign portrait"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="feature-content">
+
+      <div class="section-kicker">02 — Campaign / 001</div>
+
+      <h2>
+        LESS<br>
+        NOISE.<br>
+        <span>MORE FORM.</span>
+      </h2>
+
+      <p>
+        We believe clothing should speak without shouting.
+        Clean proportions, considered details and silhouettes
+        that feel as good as they look.
+      </p>
+
+      <a class="button button-dark" href="#editorial">
+        Enter our world <span>↗</span>
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- BRAND STATEMENT -->
+
+  <section class="statement reveal" id="story">
+
+    <div class="section-kicker">The VĒLORA perspective</div>
+
+    <h2>
+      TOMORROW'S<br>
+      SHAPE. <span>TODAY'S</span><br>
+      SENSIBILITY.
+    </h2>
+
+    <p>
+      An independent fashion concept exploring the
+      intersection of modern utility, quiet luxury
+      and future-facing design.
+    </p>
+
+  </section>
+
+  <!-- EDITORIAL -->
+
+  <section class="section reveal" id="editorial">
+
+    <div class="section-heading">
+      <div>
+        <div class="section-kicker">03 — Beyond the product</div>
+        <h2>THE VĒLORA<br>STATE OF MIND.</h2>
+      </div>
+    </div>
+
+    <div class="editorial-grid">
+
+      <a href="#collection" class="editorial-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85"
+          alt="Modern street fashion editorial"
+          loading="lazy"
+        >
+
+        <div class="editorial-copy">
+          <p>Perspective / 001</p>
+          <h3>Outside the ordinary.</h3>
+        </div>
+
+      </a>
+
+      <a href="#collection" class="editorial-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"
+          alt="Contemporary clothing and personal style"
+          loading="lazy"
+        >
+
+        <div class="editorial-copy">
+          <p>Everyday / Elevated</p>
+          <h3>Wear your own future.</h3>
+        </div>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- NEWSLETTER -->
+
+  <section class="newsletter reveal">
+
+    <div class="section-kicker">The VĒLORA frequency</div>
+
+    <h2>Stay ahead of the form.</h2>
+
+    <p>
+      Collection previews, campaign stories and
+      first access to future releases.
+    </p>
+
+    <form class="newsletter-form" id="newsletterForm">
+      <input
+        type="email"
+        id="newsletterEmail"
+        placeholder="Your email address"
+        aria-label="Your email address"
+        required
+      >
+
+      <button type="submit">Join us ↗</button>
+    </form>
+
+    <div class="newsletter-message" id="newsletterMessage"></div>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="footer-main">
+
+    <div class="footer-intro">
+      <a href="#" class="footer-logo">VĒLORA.</a>
+
+      <p>
+        Future-facing fashion.
+        Considered forms.
+        A different way forward.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <a href="#collection">Shop all</a>
+      <a href="#campaign">Campaign</a>
+      <a href="#editorial">Editorial</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Information</h4>
+      <a href="#story">Our story</a>
+      <a href="mailto:hello@velora.example">Contact</a>
+      <a href="#newsletterForm">Newsletter</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Follow the future</h4>
+      <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="https://pinterest.com/" target="_blank" rel="noopener">Pinterest ↗</a>
+      <a href="https://tiktok.com/" target="_blank" rel="noopener">TikTok ↗</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> VĒLORA STUDIO</span>
+    <span>AN INDEPENDENT FASHION CONCEPT</span>
+    <span>DESIGNED FOR WHAT'S NEXT.</span>
+  </div>
+
+</footer>
+
+<!-- BACKDROP -->
+
+<div class="overlay" id="overlay"></div>
+
+<!-- SHOPPING BAG -->
+
+<aside
+  class="cart-drawer"
+  id="cartDrawer"
+  aria-label="Shopping bag"
+  aria-hidden="true"
+>
+
+  <div class="drawer-header">
+    <h2>Your bag <span id="drawerCount">(0)</span></h2>
+    <button class="close-button" id="closeCart" aria-label="Close bag">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <strong id="cartTotal">€0.00</strong>
+    </div>
+
+    <button class="button button-dark" id="checkoutButton">
+      Continue to checkout <span>↗</span>
+    </button>
+  </div>
+
+</aside>
+
+<!-- PRODUCT QUICK VIEW -->
+
+<div
+  class="modal"
+  id="productModal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Product quick view"
+  aria-hidden="true"
+>
+  <div class="modal-panel">
+
+    <button
+      class="modal-close"
+      id="closeModal"
+      aria-label="Close product"
+    >×</button>
+
+    <img class="modal-image" id="modalImage" src="" alt="">
+
+    <div class="modal-details">
+
+      <div class="section-kicker">VĒLORA / Product</div>
+
+      <h2 id="modalName">Product name</h2>
+
+      <div class="modal-price" id="modalPrice"></div>
+
+      <p class="modal-description">
+        A considered essential, designed with contemporary
+        proportions and an emphasis on fit, texture and form.
+      </p>
+
+      <div class="size-label">Select size</div>
+
+      <div class="sizes" id="modalSizes">
+        <button class="size-button" data-size="XS">XS</button>
+        <button class="size-button" data-size="S">S</button>
+        <button class="size-button selected" data-size="M">M</button>
+        <button class="size-button" data-size="L">L</button>
+        <button class="size-button" data-size="XL">XL</button>
+      </div>
+
+      <button class="button button-dark" id="addToCartButton">
+        Add to bag <span>↗</span>
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const products = [
+  {
+    id: 1,
+    name: "Sculpted Essential",
+    category: "Premium ready-to-wear",
+    price: 89,
+    badge: "Bestseller",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85",
+    color: "#E8E8E8"
+  },
+  {
+    id: 2,
+    name: "Future Structure",
+    category: "Contemporary outerwear",
+    price: 165,
+    badge: "New arrival",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=85",
+    color: "#929EAC"
+  },
+  {
+    id: 3,
+    name: "Essential Form",
+    category: "Elevated essentials",
+    price: 75,
+    badge: "Essential",
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=85",
+    color: "#101927"
+  },
+  {
+    id: 4,
+    name: "Midnight Silhouette",
+    category: "Modern statement",
+    price: 120,
+    badge: "Limited concept",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85",
+    color: "#91DFFF"
+  }
+];
+
+const $ = selector => document.querySelector(selector);
+
+const productGrid = $("#productGrid");
+const overlay = $("#overlay");
+const cartDrawer = $("#cartDrawer");
+const productModal = $("#productModal");
+
+let selectedProduct = null;
+let selectedSize = "M";
+let cart = [];
+
+try {
+  const savedCart = JSON.parse(localStorage.getItem("velora-cart") || "[]");
+  if (Array.isArray(savedCart)) cart = savedCart;
+} catch (error) {
+  cart = [];
+}
+
+function money(value) {
+  return new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR"
+  }).format(value);
+}
+
+function renderProducts() {
+  productGrid.innerHTML = products.map(product => `
+    <article class="product-card">
+
+      <div class="product-image-wrap">
+
+        <img
+          class="product-image"
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+        >
+
+        <span class="product-badge">${product.badge}</span>
+
+        <button
+          class="quick-view"
+          data-product="${product.id}"
+          aria-label="Quick view ${product.name}"
+        >
+          Quick view +
+        </button>
+
+      </div>
+
+      <div class="product-info">
+
+        <div>
+          <div class="product-name">${product.name}</div>
+          <div class="product-category">${product.category}</div>
+
+          <div class="product-swatches" aria-label="Concept color">
+            <span class="swatch" style="background:${product.color}"></span>
+            <span class="swatch" style="background:#DCE3EA"></span>
+            <span class="swatch" style="background:#101927"></span>
+          </div>
+        </div>
+
+        <div class="product-price">${money(product.price)}</div>
+
+      </div>
+
+    </article>
+  `).join("");
+}
+
+function showToast(message) {
+  const toast = $("#toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(showToast.timer);
+
+  showToast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+function openOverlay() {
+  overlay.classList.add("active");
+}
+
+function closeOverlay() {
+  overlay.classList.remove("active");
+  cartDrawer.classList.remove("active");
+  productModal.classList.remove("active");
+
+  cartDrawer.setAttribute("aria-hidden", "true");
+  productModal.setAttribute("aria-hidden", "true");
+
+  document.body.classList.remove("no-scroll");
+}
+
+function openCart() {
+  productModal.classList.remove("active");
+  cartDrawer.classList.add("active");
+  cartDrawer.setAttribute("aria-hidden", "false");
+
+  openOverlay();
+  document.body.classList.add("no-scroll");
+}
+
+function openProduct(productId) {
+  selectedProduct = products.find(
+    product => product.id === Number(productId)
+  );
+
+  if (!selectedProduct) return;
+
+  selectedSize = "M";
+
+  $("#modalImage").src = selectedProduct.image;
+  $("#modalImage").alt = selectedProduct.name;
+  $("#modalName").textContent = selectedProduct.name;
+  $("#modalPrice").textContent = money(selectedProduct.price);
+
+  document.querySelectorAll(".size-button").forEach(button => {
+    button.classList.toggle(
+      "selected",
+      button.dataset.size === selectedSize
+    );
+  });
+
+  cartDrawer.classList.remove("active");
+  productModal.classList.add("active");
+
+  productModal.setAttribute("aria-hidden", "false");
+
+  openOverlay();
+  document.body.classList.add("no-scroll");
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem("velora-cart", JSON.stringify(cart));
+  } catch (error) {
+    showToast("Your bag is available for this session.");
+  }
+}
+
+function addToCart() {
+  if (!selectedProduct) return;
+
+  const existingItem = cart.find(item =>
+    item.id === selectedProduct.id &&
+    item.size === selectedSize
+  );
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: selectedProduct.id,
+      size: selectedSize,
+      quantity: 1
+    });
+  }
+
+  saveCart();
+  renderCart();
+  closeOverlay();
+
+  showToast(selectedProduct.name + " added to your bag.");
+}
+
+function renderCart() {
+  const totalQuantity = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
+  $("#bagCount").textContent = totalQuantity;
+  $("#drawerCount").textContent = `(${totalQuantity})`;
+
+  const total = cart.reduce((sum, item) => {
+    const product = products.find(product => product.id === item.id);
+    return sum + (product ? product.price * item.quantity : 0);
+  }, 0);
+
+  $("#cartTotal").textContent = money(total);
+
+  if (!cart.length) {
+    $("#cartItems").innerHTML = `
+      <div class="empty-cart">
+        Your bag is waiting for something extraordinary.<br><br>
+        Discover the collection to get started.
+      </div>
+    `;
+    return;
+  }
+
+  $("#cartItems").innerHTML = cart.map(item => {
+    const product = products.find(product => product.id === item.id);
+
+    if (!product) return "";
+
+    return `
+      <div class="cart-item">
+
+        <img src="${product.image}" alt="${product.name}">
+
+        <div>
+          <h4>${product.name}</h4>
+          <p>Size: ${item.size}</p>
+          <p>Qty: ${item.quantity}</p>
+          <button
+            data-remove="${product.id}"
+            data-remove-size="${item.size}"
+          >
+            Remove
+          </button>
+        </div>
+
+        <strong>${money(product.price * item.quantity)}</strong>
+
+      </div>
+    `;
+  }).join("");
+}
+
+productGrid.addEventListener("click", event => {
+  const button = event.target.closest("[data-product]");
+
+  if (button) openProduct(button.dataset.product);
+});
+
+$("#modalSizes").addEventListener("click", event => {
+  const button = event.target.closest("[data-size]");
+
+  if (!button) return;
+
+  selectedSize = button.dataset.size;
+
+  document.querySelectorAll(".size-button").forEach(sizeButton => {
+    sizeButton.classList.toggle(
+      "selected",
+      sizeButton === button
+    );
+  });
+});
+
+$("#addToCartButton").addEventListener("click", addToCart);
+
+$("#openCart").addEventListener("click", openCart);
+
+$("#closeCart").addEventListener("click", closeOverlay);
+$("#closeModal").addEventListener("click", closeOverlay);
+
+overlay.addEventListener("click", closeOverlay);
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeOverlay();
+});
+
+$("#cartItems").addEventListener("click", event => {
+  const button = event.target.closest("[data-remove]");
+
+  if (!button) return;
+
+  const productId = Number(button.dataset.remove);
+  const size = button.dataset.removeSize;
+
+  const index = cart.findIndex(item =>
+    item.id === productId && item.size === size
+  );
+
+  if (index !== -1) {
+    cart.splice(index, 1);
+    saveCart();
+    renderCart();
+    showToast("Item removed from your bag.");
+  }
+});
+
+$("#checkoutButton").addEventListener("click", () => {
+  if (!cart.length) {
+    showToast("Your bag is empty.");
+    return;
+  }
+
+  showToast("Checkout integration comes in the next stage.");
+});
+
+const menuButton = $("#menuButton");
+const mainNav = $("#mainNav");
+
+menuButton.addEventListener("click", () => {
+  const isOpen = mainNav.classList.toggle("active");
+
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation" : "Open navigation"
+  );
+
+  menuButton.textContent = isOpen ? "×" : "☰";
+});
+
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("active");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.textContent = "☰";
+  });
+});
+
+$("#newsletterForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const email = $("#newsletterEmail").value.trim();
+
+  if (!email) return;
+
+  $("#newsletterMessage").textContent =
+    "Thanks for your interest in VĒLORA.";
+
+  $("#newsletterEmail").value = "";
+
+  showToast("You're on the VĒLORA concept list.");
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+
+$("#year").textContent = new Date().getFullYear();
+
+renderProducts();
+renderCart();
+</script>
+
+</body>
+</html>
