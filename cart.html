@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Bag | VĒLORA</title>
+
+<style>
+:root {
+  --bg: #F4F8FC;
+  --silver: #DCE3EA;
+  --chrome: #929EAC;
+  --navy: #101927;
+  --ice: #91DFFF;
+  --white: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--navy);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  height: 82px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--silver);
+  background: rgba(255,255,255,.85);
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: #507d96;
+}
+
+.bag-label {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 65px 6% 100px;
+}
+
+.eyebrow {
+  color: #687787;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 500;
+  letter-spacing: -3px;
+  margin-bottom: 14px;
+}
+
+.intro {
+  color: #6d7885;
+  font-size: 14px;
+  margin-bottom: 48px;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1.6fr .8fr;
+  gap: 55px;
+  align-items: start;
+}
+
+.cart-heading {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--silver);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 125px 1fr auto;
+  gap: 22px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--silver);
+}
+
+.product-image {
+  width: 125px;
+  height: 155px;
+  object-fit: cover;
+  background: var(--silver);
+}
+
+.item-info h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 5px 0 9px;
+}
+
+.item-category {
+  color: #75818e;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.item-meta {
+  color: #687787;
+  font-size: 12px;
+  margin-bottom: 17px;
+}
+
+.quantity-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--silver);
+  background: white;
+}
+
+.quantity-control button {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.quantity-control span {
+  min-width: 28px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.remove-button {
+  display: block;
+  margin-top: 14px;
+  border: none;
+  background: transparent;
+  color: #74808c;
+  text-decoration: underline;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.item-price {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.summary {
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--silver);
+  position: sticky;
+  top: 20px;
+}
+
+.summary h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 13px;
+  margin: 18px 0;
+}
+
+.summary-row span:last-child {
+  text-align: right;
+}
+
+.summary-note {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #74808c;
+  margin: 20px 0;
+}
+
+.summary-total {
+  padding-top: 20px;
+  border-top: 1px solid var(--silver);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 19px;
+  margin-top: 12px;
+  border: 1px solid var(--navy);
+  background: var(--navy);
+  color: white;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.checkout-button:hover {
+  background: #263c53;
+}
+
+.continue-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.empty-cart {
+  padding: 65px 20px;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--silver);
+}
+
+.empty-cart h2 {
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.empty-cart p {
+  color: #687787;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.shop-button {
+  display: inline-block;
+  padding: 17px 25px;
+  background: var(--navy);
+  color: white;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+footer {
+  padding: 30px 6%;
+  border-top: 1px solid var(--silver);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: #74808c;
+  font-size: 11px;
+  letter-spacing: .5px;
+}
+
+@media (max-width: 800px) {
+  header {
+    height: 70px;
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
+
+  nav {
+    gap: 14px;
+    font-size: 10px;
+  }
+
+  nav a:nth-child(2) {
+    display: none;
+  }
+
+  main {
+    padding: 45px 5% 70px;
+  }
+
+  .cart-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .summary {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-item {
+    grid-template-columns: 95px 1fr;
+    gap: 15px;
+  }
+
+  .product-image {
+    width: 95px;
+    height: 125px;
+  }
+
+  .item-price {
+    grid-column: 2;
+  }
+
+  .item-info h3 {
+    font-size: 15px;
+  }
+
+  .summary {
+    padding: 22px;
+  }
+
+  h1 {
+    letter-spacing: -2px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo">VĒLORA</a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Collections</a>
+    <a href="shop.html">Shop</a>
+  </nav>
+
+  <a href="cart.html" class="bag-label">
+    BAG (<span id="header-count">0</span>)
+  </a>
+</header>
+
+<main>
+  <p class="eyebrow">Your selection</p>
+  <h1>Shopping bag<span>.</span></h1>
+  <p class="intro">Considered pieces. Selected by you.</p>
+
+  <div id="cart-content"></div>
+</main>
+
+<footer>
+  <span>© 2026 VĒLORA STUDIO</span>
+  <span>DESIGNED FOR EVERYDAY ELEVATION</span>
+</footer>
+
+<script>
+const CART_KEY = "veloraCart";
+
+function getCart() {
+  try {
+    const data = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function money(value) {
+  return "€" + Number(value || 0).toFixed(2);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function getItemPrice(item) {
+  return Number(item.price) || 0;
+}
+
+function getQuantity(item) {
+  return Math.max(1, parseInt(item.quantity, 10) || 1);
+}
+
+function renderCart() {
+  const cart = getCart();
+  const count = cart.reduce((sum, item) => sum + getQuantity(item), 0);
+  const subtotal = cart.reduce(
+    (sum, item) => sum + getItemPrice(item) * getQuantity(item),
+    0
+  );
+
+  document.getElementById("header-count").textContent = count;
+
+  const container = document.getElementById("cart-content");
+
+  if (!cart.length) {
+    container.innerHTML = `
+      <section class="empty-cart">
+        <h2>Your bag is waiting.</h2>
+        <p>Discover the pieces that belong in your wardrobe.</p>
+        <a href="shop.html" class="shop-button">Explore collection</a>
+      </section>
+    `;
+    return;
+  }
+
+  const itemsHTML = cart.map((item, index) => {
+    const name = escapeHTML(item.name || item.title || "VĒLORA Essential");
+    const image = escapeHTML(
+      item.image || item.img ||
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80"
+    );
+    const size = escapeHTML(item.size || "Standard");
+    const color = escapeHTML(item.color || "As shown");
+    const quantity = getQuantity(item);
+    const price = getItemPrice(item);
+
+    return `
+      <article class="cart-item">
+        <img class="product-image" src="${image}" alt="${name}"
+             onerror="this.onerror=null;this.src='https://placehold.co/300x400/F4F8FC/101927?text=VELORA'">
+
+        <div class="item-info">
+          <p class="item-category">VĒLORA COLLECTION</p>
+          <h3>${name}</h3>
+          <p class="item-meta">Size: ${size}<br>Colour: ${color}</p>
+
+          <div class="quantity-control">
+            <button type="button" aria-label="Decrease quantity"
+              onclick="changeQuantity(${index}, -1)">−</button>
+            <span>${quantity}</span>
+            <button type="button" aria-label="Increase quantity"
+              onclick="changeQuantity(${index}, 1)">+</button>
+          </div>
+
+          <button class="remove-button" type="button"
+            onclick="removeItem(${index})">Remove</button>
+        </div>
+
+        <div class="item-price">${money(price * quantity)}</div>
+      </article>
+    `;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="cart-layout">
+      <section>
+        <div class="cart-heading">
+          <span>Your items (${count})</span>
+          <span>Price</span>
+        </div>
+        ${itemsHTML}
+      </section>
+
+      <aside class="summary">
+        <h2>Order summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>${money(subtotal)}</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>Calculated at checkout</span>
+        </div>
+
+        <div class="summary-row summary-total">
+          <span>Total</span>
+          <span>${money(subtotal)}</span>
+        </div>
+
+        <p class="summary-note">
+          Shipping and any applicable taxes will be confirmed before payment.
+          This demo does not process real orders or payments.
+        </p>
+
+        <button class="checkout-button" type="button"
+          onclick="checkoutDemo()">Continue to checkout</button>
+
+        <a href="shop.html" class="continue-link">Continue shopping</a>
+      </aside>
+    </div>
+  `;
+}
+
+function changeQuantity(index, amount) {
+  const cart = getCart();
+  if (!cart[index]) return;
+
+  const newQuantity = getQuantity(cart[index]) + amount;
+
+  if (newQuantity < 1) {
+    cart.splice(index, 1);
+  } else {
+    cart[index].quantity = newQuantity;
+  }
+
+  saveCart(cart);
+  renderCart();
+}
+
+function removeItem(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  renderCart();
+}
+
+function checkoutDemo() {
+  alert(
+    "Thank you for exploring VĒLORA! Real checkout and payment processing will be connected in a future stage."
+  );
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
