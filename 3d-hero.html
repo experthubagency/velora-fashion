@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VĒLORA — Beyond Form</title>
+
+<meta name="theme-color" content="#080e18">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #080e18;
+  --ice: #91dfff;
+  --white: #f4f8fc;
+  --muted: #8796a8;
+  --line: rgba(220, 235, 255, 0.13);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 68% 45%,
+      rgba(44, 90, 133, .18),
+      transparent 39%
+    ),
+    linear-gradient(130deg, #080e18, #101927 60%, #080e18);
+}
+
+/* BACKGROUND GRID */
+
+.grid-background {
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      rgba(145,223,255,.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(145,223,255,.12) 1px,
+      transparent 1px
+    );
+  background-size: 65px 65px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 25%,
+    black 80%,
+    transparent
+  );
+}
+
+header {
+  height: 88px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 7px;
+}
+
+.logo span {
+  color: var(--ice);
+}
+
+nav {
+  display: flex;
+  gap: 36px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+nav a {
+  color: #aab5c3;
+  transition: color .25s;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.header-action {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ice);
+  padding-bottom: 7px;
+}
+
+/* MAIN HERO */
+
+.hero {
+  min-height: calc(100vh - 88px);
+  min-height: calc(100svh - 88px);
+  position: relative;
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  align-items: center;
+  padding: 55px 6% 75px;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 490px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ice);
+  margin-bottom: 30px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--ice);
+}
+
+h1 {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(58px, 8.3vw, 118px);
+  font-weight: 300;
+  line-height: .91;
+  letter-spacing: -.085em;
+}
+
+h1 .outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244,248,252,.8);
+}
+
+h1 .ice {
+  color: var(--ice);
+}
+
+.hero-description {
+  max-width: 350px;
+  margin-top: 30px;
+  color: #9caaba;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 50px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  transition: .25s;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: var(--ice);
+  color: #08111c;
+  border: 1px solid var(--ice);
+}
+
+.primary-button:hover {
+  background: white;
+  border-color: white;
+}
+
+.secondary-button {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,.22);
+}
+
+.secondary-button:hover {
+  border-color: var(--ice);
+  color: var(--ice);
+}
+
+.arrow {
+  font-size: 17px;
+}
+
+/* 3D SCENE */
+
+.scene-wrap {
+  position: relative;
+  width: 100%;
+  height: min(76vh, 720px);
+  min-height: 420px;
+  isolation: isolate;
+}
+
+#scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+#scene:active {
+  cursor: grabbing;
+}
+
+#scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.scene-glow {
+  position: absolute;
+  z-index: 0;
+  width: 65%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  left: 17%;
+  top: 16%;
+  background: rgba(70, 145, 195, .13);
+  filter: blur(65px);
+  pointer-events: none;
+}
+
+.scene-ring {
+  position: absolute;
+  z-index: 0;
+  width: 70%;
+  aspect-ratio: 1;
+  left: 14%;
+  top: 12%;
+  border: 1px solid rgba(145,223,255,.16);
+  border-radius: 50%;
+  transform: rotateX(65deg) rotate(-20deg);
+  pointer-events: none;
+}
+
+.scene-ring::before,
+.scene-ring::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(145,223,255,.09);
+  border-radius: 50%;
+}
+
+.scene-ring::after {
+  inset: 25%;
+}
+
+.scene-label {
+  position: absolute;
+  z-index: 2;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b3c1d0;
+  pointer-events: none;
+}
+
+.label-top {
+  top: 8%;
+  right: 2%;
+}
+
+.label-bottom {
+  bottom: 7%;
+  left: 2%;
+}
+
+.scene-number {
+  position: absolute;
+  right: 2%;
+  bottom: 6%;
+  font-size: 10px;
+  color: var(--ice);
+  letter-spacing: 3px;
+}
+
+/* INTERACTION HINT */
+
+.drag-hint {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  color: #9cabbc;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* BOTTOM STRIP */
+
+.bottom-strip {
+  min-height: 78px;
+  padding: 20px 6%;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 4;
+}
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #a0adbd;
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.strip-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--ice);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--ice);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #7d8d9f;
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #8ce9ba;
+  border-radius: 50%;
+}
+
+/* SMALL SCREEN */
+
+@media (max-width: 900px) {
+  header {
+    height: 72px;
+  }
+
+  .logo {
+    font-size: 21px;
+    letter-spacing: 5px;
+  }
+
+  nav {
+    gap: 17px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 65px;
+    padding-bottom: 30px;
+  }
+
+  .hero-copy {
+    max-width: 580px;
+  }
+
+  h1 {
+    font-size: clamp(65px, 12vw, 105px);
+  }
+
+  .hero-description {
+    max-width: 410px;
+  }
+
+  .scene-wrap {
+    height: 70vw;
+    min-height: 380px;
+    max-height: 600px;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 520px) {
+  header {
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 19px;
+    letter-spacing: 3px;
+  }
+
+  nav {
+    gap: 13px;
+  }
+
+  nav a {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  nav a:nth-child(2) {
+    display: none;
+  }
+
+  .header-action {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .hero {
+    padding: 55px 5% 25px;
+  }
+
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 2.5px;
+    margin-bottom: 25px;
+  }
+
+  h1 {
+    font-size: clamp(58px, 15vw, 82px);
+  }
+
+  .hero-description {
+    font-size: 11px;
+    margin-top: 24px;
+  }
+
+  .hero-buttons {
+    margin-top: 27px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    min-height: 46px;
+    padding: 0 16px;
+    font-size: 8px;
+  }
+
+  .scene-wrap {
+    height: 105vw;
+    min-height: 340px;
+    max-height: 490px;
+    margin-top: 15px;
+  }
+
+  .label-top {
+    top: 4%;
+  }
+
+  .label-bottom {
+    bottom: 5%;
+  }
+
+  .bottom-strip {
+    padding: 18px 5%;
+  }
+
+  .strip-item {
+    font-size: 7px;
+    letter-spacing: .8px;
+    gap: 7px;
+  }
+
+  .strip-item:nth-child(2) {
+    display: none;
+  }
+
+  .status {
+    font-size: 7px;
+    letter-spacing: .7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="grid-background"></div>
+
+  <header>
+    <a class="logo" href="index.html">VĒLORA<span>.</span></a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Collection</a>
+      <a href="cart.html">Your Bag</a>
+    </nav>
+
+    <a class="header-action" href="shop.html">Discover ↗</a>
+  </header>
+
+
+  <main class="hero">
+
+    <section class="hero-copy">
+
+      <p class="eyebrow">A new dimension of fashion</p>
+
+      <h1>
+        Beyond<br>
+        <span class="outline">the</span><br>
+        <span class="ice">ordinary.</span>
+      </h1>
+
+      <p class="hero-description">
+        A study in form, movement and modern luxury.
+        Discover a new perspective on contemporary fashion,
+        where every detail has a purpose.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="shop.html" class="primary-button">
+          Explore collection <span class="arrow">↗</span>
+        </a>
+
+        <button class="secondary-button" id="rotateButton">
+          Interact with form <span class="arrow">↗</span>
+        </button>
+      </div>
+
+    </section>
+
+
+    <section class="scene-wrap" aria-label="Interactive 3D sculpture">
+
+      <div class="scene-glow"></div>
+      <div class="scene-ring"></div>
+
+      <div class="scene-label label-top">
+        VĒLORA / FORM 001
+      </div>
+
+      <div id="scene"></div>
+
+      <div class="scene-label label-bottom">
+        Material study — chrome
+      </div>
+
+      <div class="scene-number">001 / 003</div>
+
+      <div class="drag-hint">
+        ↔ Drag to explore
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <section class="bottom-strip">
+
+    <div class="strip-item">
+      <span class="strip-dot"></span>
+      Form meets function
+    </div>
+
+    <div class="strip-item">
+      Chrome / Ice / Structure
+    </div>
+
+    <div class="status">
+      <span class="status-dot"></span>
+      <span id="statusText">Initialising experience</span>
+    </div>
+
+  </section>
+
+</div>
+
+
+<script type="module">
+import * as THREE from
+  'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+
+
+const mount = document.getElementById('scene');
+const statusText = document.getElementById('statusText');
+
+let renderer;
+let scene;
+let camera;
+let sculpture;
+let frameId;
+
+let pointerDown = false;
+let previousX = 0;
+let previousY = 0;
+
+let targetRotationY = 0;
+let targetRotationX = 0;
+
+let rotationVelocity = 0;
+let elapsed = 0;
+
+
+function createScene() {
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(
+    36,
+    mount.clientWidth / mount.clientHeight,
+    0.1,
+    100
+  );
+
+  camera.position.set(0, 0, 8.5);
+
+
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true,
+    powerPreference: 'high-performance'
+  });
+
+  renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio, 1.7)
+  );
+
+  renderer.setSize(
+    mount.clientWidth,
+    mount.clientHeight
+  );
+
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.25;
+
+  mount.appendChild(renderer.domElement);
+
+
+  // LIGHTING
+
+  scene.add(new THREE.AmbientLight(0x9ebcdd, 1.4));
+
+  const keyLight = new THREE.DirectionalLight(
+    0xffffff,
+    4
+  );
+
+  keyLight.position.set(4, 5, 6);
+  scene.add(keyLight);
+
+
+  const blueLight = new THREE.PointLight(
+    0x66caff,
+    35,
+    15
+  );
+
+  blueLight.position.set(-4, 1, 3);
+  scene.add(blueLight);
+
+
+  const rimLight = new THREE.PointLight(
+    0xffffff,
+    40,
+    15
+  );
+
+  rimLight.position.set(2, 3, -4);
+  scene.add(rimLight);
+
+
+  const lowerLight = new THREE.PointLight(
+    0x428bc1,
+    18,
+    12
+  );
+
+  lowerLight.position.set(1, -4, 2);
+  scene.add(lowerLight);
+
+
+  // METALLIC MATERIAL
+
+  const chromeMaterial = new THREE.MeshPhysicalMaterial({
+    color: 0xc9d6e5,
+    metalness: 0.88,
+    roughness: 0.19,
+    clearcoat: 1,
+    clearcoatRoughness: 0.13
+  });
+
+
+  const darkChrome = new THREE.MeshPhysicalMaterial({
+    color: 0x52667b,
+    metalness: 0.92,
+    roughness: 0.25
+  });
+
+
+  const iceMaterial = new THREE.MeshStandardMaterial({
+    color: 0x91dfff,
+    metalness: 0.55,
+    roughness: 0.25,
+    emissive: 0x143b51,
+    emissiveIntensity: 0.5
+  });
+
+
+  // MAIN SCULPTURE GROUP
+
+  sculpture = new THREE.Group();
+  scene.add(sculpture);
+
+
+  // CREATE A STYLISED GARMENT-LIKE SILHOUETTE
+
+  const garmentShape = new THREE.Shape();
+
+  garmentShape.moveTo(-0.65, 1.55);
+  garmentShape.lineTo(-1.15, 1.28);
+  garmentShape.lineTo(-1.8, 0.55);
+  garmentShape.lineTo(-1.35, 0.15);
+  garmentShape.lineTo(-0.98, 0.55);
+
+  garmentShape.lineTo(-0.92, -1.35);
+  garmentShape.quadraticCurveTo(
+    0, -1.58,
+    0.92, -1.35
+  );
+
+  garmentShape.lineTo(0.98, 0.55);
+  garmentShape.lineTo(1.35, 0.15);
+  garmentShape.lineTo(1.8, 0.55);
+  garmentShape.lineTo(1.15, 1.28);
+  garmentShape.lineTo(0.65, 1.55);
+
+  garmentShape.lineTo(0.35, 1.12);
+
+  garmentShape.quadraticCurveTo(
+    0, 0.92,
+    -0.35, 1.12
+  );
+
+  garmentShape.lineTo(-0.65, 1.55);
+
+
+  const garmentGeometry = new THREE.ExtrudeGeometry(
+    garmentShape,
+    {
+      depth: 0.22,
+      bevelEnabled: true,
+      bevelSegments: 4,
+      steps: 1,
+      bevelSize: 0.09,
+      bevelThickness: 0.09,
+      curveSegments: 12
+    }
+  );
+
+  garmentGeometry.center();
+
+  const garment = new THREE.Mesh(
+    garmentGeometry,
+    chromeMaterial
+  );
+
+  garment.scale.set(0.88, 1.05, 1);
+  garment.rotation.y = -0.12;
+
+  sculpture.add(garment);
+
+
+  // CENTRAL VERTICAL STRUCTURE
+
+  const centralBar = new THREE.Mesh(
+    new THREE.CylinderGeometry(
+      0.035, 0.035, 2.55, 16
+    ),
+    darkChrome
+  );
+
+  centralBar.position.set(0, -0.05, 0.24);
+
+  sculpture.add(centralBar);
+
+
+  // THREE CHROME RINGS
+
+  for (let i = 0; i < 3; i++) {
+
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(
+        0.62 + i * 0.2,
+        0.018,
+        10,
+        100
+      ),
+      i === 1 ? iceMaterial : chromeMaterial
+    );
+
+    ring.position.z = 0.3 + i * 0.03;
+
+    ring.rotation.x = Math.PI / 2.8;
+    ring.rotation.y = i * 0.45;
+
+    ring.userData.ringIndex = i;
+
+    sculpture.add(ring);
+  }
+
+
+  // SMALL FLOATING METALLIC ELEMENTS
+
+  const sphereGeometry = new THREE.SphereGeometry(
+    0.07, 24, 24
+  );
+
+  const positions = [
+    [-1.8, 1.6, 0.3],
+    [1.7, 1.15, 0.4],
+    [-1.55, -1.3, 0.2],
+    [1.65, -1.55, 0.3],
+    [0.2, 1.9, -0.1]
+  ];
+
+
+  positions.forEach((position, index) => {
+
+    const material = index % 2 === 0
+      ? chromeMaterial
+      : iceMaterial;
+
+    const sphere = new THREE.Mesh(
+      sphereGeometry,
+      material
+    );
+
+    sphere.position.set(...position);
+
+    sphere.userData.floatOffset = index * 1.2;
+
+    sculpture.add(sphere);
+
+  });
+
+
+  // PARTICLES
+
+  const particleCount = 180;
+
+  const particlePositions = new Float32Array(
+    particleCount * 3
+  );
+
+  for (let i = 0; i < particleCount; i++) {
+
+    particlePositions[i * 3] =
+      (Math.random() - 0.5) * 8;
+
+    particlePositions[i * 3 + 1] =
+      (Math.random() - 0.5) * 8;
+
+    particlePositions[i * 3 + 2] =
+      (Math.random() - 0.5) * 4 - 1;
+
+  }
+
+
+  const particleGeometry = new THREE.BufferGeometry();
+
+  particleGeometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(
+      particlePositions,
+      3
+    )
+  );
+
+
+  const particleMaterial = new THREE.PointsMaterial({
+    color: 0x91dfff,
+    size: 0.018,
+    transparent: true,
+    opacity: 0.65
+  });
+
+
+  const particles = new THREE.Points(
+    particleGeometry,
+    particleMaterial
+  );
+
+  scene.add(particles);
+
+
+  sculpture.userData.particles = particles;
+
+
+  // FLOOR PLATFORM
+
+  const platform = new THREE.Mesh(
+    new THREE.CylinderGeometry(
+      1.4, 1.65, 0.055, 80
+    ),
+    darkChrome
+  );
+
+  platform.position.y = -2.05;
+  platform.rotation.x = 0.025;
+
+  sculpture.add(platform);
+
+
+  const platformRing = new THREE.Mesh(
+    new THREE.TorusGeometry(
+      1.47, 0.014, 8, 100
+    ),
+    iceMaterial
+  );
+
+  platformRing.rotation.x = Math.PI / 2;
+  platformRing.position.y = -2.015;
+
+  sculpture.add(platformRing);
+
+
+  statusText.textContent = 'Interactive scene ready';
+
+  animate();
+
+}
+
+
+function animate() {
+
+  frameId = requestAnimationFrame(animate);
+
+  elapsed += 0.01;
+
+
+  if (sculpture) {
+
+    // Slow idle movement
+
+    if (!pointerDown) {
+      targetRotationY += rotationVelocity;
+      rotationVelocity *= 0.94;
+    }
+
+    sculpture.rotation.y +=
+      (targetRotationY - sculpture.rotation.y) * 0.055;
+
+    sculpture.rotation.x +=
+      (targetRotationX - sculpture.rotation.x) * 0.055;
+
+
+    // Gentle floating movement
+
+    sculpture.position.y =
+      Math.sin(elapsed * 0.8) * 0.09;
+
+
+    // Floating spheres
+
+    sculpture.children.forEach(child => {
+
+      if (child.userData.floatOffset !== undefined) {
+
+        child.position.y +=
+          Math.sin(
+            elapsed * 1.3 +
+            child.userData.floatOffset
+          ) * 0.0018;
+
+      }
+
+
+      if (child.userData.ringIndex !== undefined) {
+
+        child.rotation.z +=
+          0.001 * (child.userData.ringIndex + 1);
+
+      }
+
+    });
+
+
+    // Slow particle drift
+
+    if (sculpture.userData.particles) {
+
+      sculpture.userData.particles.rotation.y =
+        elapsed * 0.025;
+
+    }
+
+  }
+
+
+  renderer.render(scene, camera);
+
+}
+
+
+// POINTER INTERACTION
+
+mount.addEventListener('pointerdown', event => {
+
+  pointerDown = true;
+
+  previousX = event.clientX;
+  previousY = event.clientY;
+
+  mount.setPointerCapture(event.pointerId);
+
+});
+
+
+mount.addEventListener('pointermove', event => {
+
+  if (!pointerDown) return;
+
+  const deltaX = event.clientX - previousX;
+  const deltaY = event.clientY - previousY;
+
+  targetRotationY += deltaX * 0.008;
+
+  targetRotationX += deltaY * 0.004;
+
+  targetRotationX = Math.max(
+    -0.45,
+    Math.min(0.45, targetRotationX)
+  );
+
+  rotationVelocity = deltaX * 0.0005;
+
+  previousX = event.clientX;
+  previousY = event.clientY;
+
+});
+
+
+function stopDragging() {
+  pointerDown = false;
+}
+
+mount.addEventListener('pointerup', stopDragging);
+mount.addEventListener('pointercancel', stopDragging);
+mount.addEventListener('lostpointercapture', stopDragging);
+
+
+// BUTTON INTERACTION
+
+document.getElementById('rotateButton')
+  .addEventListener('click', () => {
+
+    targetRotationY += Math.PI * 0.8;
+
+    statusText.textContent = 'Exploring form';
+
+  });
+
+
+// RESIZE
+
+window.addEventListener('resize', () => {
+
+  if (!renderer || !camera) return;
+
+  const width = mount.clientWidth;
+  const height = mount.clientHeight;
+
+  camera.aspect = width / height;
+
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height);
+
+  renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio, 1.7)
+  );
+
+});
+
+
+// INITIALISE WITH A FRIENDLY ERROR
+
+try {
+
+  createScene();
+
+} catch (error) {
+
+  console.error('VĒLORA 3D initialisation failed:', error);
+
+  statusText.textContent = '3D could not initialise';
+
+  mount.innerHTML = `
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      padding:30px;
+      color:#91dfff;
+      text-align:center;
+      font-size:12px;
+      line-height:2;
+    ">
+      The 3D experience could not load.
+      Please check your connection and browser support.
+    </div>
+  `;
+
+}
+
+</script>
+
+</body>
+      </html>
