@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111111">
-<meta name="description" content="VĒLORA — Contemporary fashion for those who move differently. Discover elevated essentials and modern silhouettes.">
+<meta name="theme-color" content="#f4f1eb">
+<meta name="description" content="VĒLORA — Beyond Ordinary. Discover considered fashion, contemporary silhouettes, and timeless essentials.">
 <title>VĒLORA — Beyond Ordinary</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #f6f4ef;
-  --paper: #fffefa;
-  --ink: #171715;
-  --muted: #77756e;
-  --line: #dedbd3;
-  --accent: #b69b73;
-  --dark: #171715;
+  --bg: #f4f1eb;
+  --paper: #faf8f4;
+  --ink: #20201d;
+  --muted: #79766e;
+  --line: rgba(32,32,29,.15);
+  --accent: #a48b65;
   --serif: "Playfair Display", Georgia, serif;
   --sans: "DM Sans", Arial, sans-serif;
-  --ease: cubic-bezier(.22,.61,.36,1);
+  --ease: cubic-bezier(.2,.75,.25,1);
 }
 
 * {
@@ -43,7 +42,7 @@ body {
   overflow-x: hidden;
 }
 
-body.no-scroll {
+body.locked {
   overflow: hidden;
 }
 
@@ -52,7 +51,11 @@ button, input {
 }
 
 button {
-  cursor: pointer;
+  color: inherit;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -60,314 +63,404 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 img {
   display: block;
   width: 100%;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+::selection {
+  background: var(--ink);
+  color: white;
 }
 
 .announcement {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
   background: var(--ink);
-  color: white;
-  text-align: center;
-  padding: 10px 15px;
+  color: #f8f5ee;
   font-size: 9px;
-  letter-spacing: 2px;
   text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
 .header {
-  height: 76px;
-  padding: 0 6%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  border-bottom: 1px solid rgba(0,0,0,.08);
-  background: rgba(246,244,239,.96);
   position: sticky;
   top: 0;
-  z-index: 100;
-  backdrop-filter: blur(14px);
+  z-index: 50;
+  background: rgba(244,241,235,.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, background .3s;
+}
+
+.header.scrolled {
+  border-color: var(--line);
+  background: rgba(244,241,235,.97);
+}
+
+.nav {
+  height: 76px;
+  padding: 0 5.5%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-link, .nav-action {
+  border: 0;
+  background: transparent;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav-link {
+  position: relative;
+  padding: 8px 0;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width .3s var(--ease);
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .logo {
   font-family: var(--serif);
-  font-size: 27px;
+  font-size: 29px;
+  font-weight: 500;
   letter-spacing: 5px;
-  font-weight: 600;
-  white-space: nowrap;
+  text-align: center;
 }
 
-.nav {
-  display: flex;
-  gap: 30px;
-  align-items: center;
+.logo span {
+  display: block;
+  font-family: var(--sans);
+  font-size: 7px;
+  letter-spacing: 4px;
+  margin-top: 3px;
 }
 
-.nav a {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  position: relative;
-}
-
-.nav a::after {
-  content: "";
-  height: 1px;
-  background: var(--ink);
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  transition: width .3s;
-}
-
-.nav a:hover::after {
-  width: 100%;
-}
-
-.header-actions {
+.nav-action {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 8px;
 }
 
-.icon-button {
-  border: 0;
-  background: transparent;
-  font-size: 20px;
-  position: relative;
-  color: var(--ink);
-}
-
-.cart-count {
-  position: absolute;
-  top: -7px;
-  right: -9px;
-  width: 17px;
-  height: 17px;
+.bag-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 50%;
   background: var(--ink);
   color: white;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
   font-size: 9px;
 }
 
 .menu-toggle {
   display: none;
-  background: transparent;
   border: 0;
-  font-size: 23px;
+  background: transparent;
+  font-size: 21px;
 }
 
-/* 3D HERO */
-
-.hero-3d {
-  position: relative;
-  min-height: 680px;
-  height: min(790px, calc(100svh - 110px));
-  background:
-    radial-gradient(ellipse at 50% 48%, #dedbd3 0%, #c8c4bb 33%, #a6a39c 67%, #85837e 100%);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.hero-3d::before {
-  content: "";
-  position: absolute;
+.mobile-menu {
+  display: none;
+  position: fixed;
   inset: 0;
-  z-index: -1;
-  opacity: .13;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
-  pointer-events: none;
+  z-index: 100;
+  background: var(--bg);
+  padding: 25px;
 }
 
-.hero-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-canvas canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
+.mobile-menu.open {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 65px 7% 38px;
 }
 
-.hero-topline {
+.mobile-menu-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  padding-bottom: 35px;
+  border-bottom: 1px solid var(--line);
 }
 
-.hero-label {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  line-height: 1.9;
+.mobile-menu-top button {
+  border: 0;
+  background: transparent;
+  font-size: 25px;
 }
 
-.hero-index {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-align: right;
-  line-height: 1.9;
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
 }
 
-.hero-center-copy {
+.mobile-menu-links a {
+  padding: 17px 0;
+  font-family: var(--serif);
+  font-size: clamp(30px, 8vw, 48px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  min-height: min(760px, calc(100svh - 108px));
+  height: 690px;
+  max-height: 850px;
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-background {
   position: absolute;
-  left: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 380px;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 72% 45%, rgba(191,179,157,.24), transparent 35%),
+    linear-gradient(125deg, #f4f1eb 0%, #eae5dc 52%, #f5f1e9 100%);
+  z-index: -2;
 }
 
-.hero-kicker {
-  text-transform: uppercase;
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: .12;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .19;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(65,60,51,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65,60,51,.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(90deg, transparent, black 55%, transparent);
+}
+
+.hero-copy {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 9%;
+  width: 42%;
+  transform: translateY(-45%);
+  pointer-events: none;
+}
+
+.eyebrow {
   font-size: 9px;
   letter-spacing: 3px;
-  margin-bottom: 23px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-copy .eyebrow {
+  margin-bottom: 27px;
 }
 
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(48px, 7.5vw, 108px);
   font-weight: 400;
-  line-height: .92;
-  letter-spacing: -3px;
+  font-size: clamp(58px, 8.3vw, 124px);
+  line-height: .91;
+  letter-spacing: -4px;
 }
 
 .hero-title em {
+  display: block;
   font-weight: 400;
+  margin-left: 10%;
 }
 
 .hero-description {
-  font-size: 11px;
+  margin-top: 30px;
+  max-width: 285px;
+  color: #67645c;
+  font-size: 12px;
   line-height: 1.9;
-  color: #393934;
-  max-width: 255px;
-  margin-top: 25px;
 }
 
 .hero-cta {
-  pointer-events: auto;
   display: inline-flex;
+  pointer-events: auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 35px;
+  gap: 24px;
   margin-top: 28px;
-  padding: 15px 18px;
+  padding: 15px 20px;
+  border: 1px solid var(--ink);
   background: var(--ink);
   color: white;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
   font-size: 9px;
-  transition: background .3s, color .3s;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  transition: background .3s, color .3s, transform .3s;
 }
 
 .hero-cta:hover {
-  background: white;
+  background: transparent;
   color: var(--ink);
+  transform: translateY(-3px);
 }
 
-.hero-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 20px;
+.hero-cta span {
+  font-size: 17px;
 }
 
-.hero-bottom p {
+.hero-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.hero-3d:active {
+  cursor: grabbing;
+}
+
+#heroCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.hero-index {
+  position: absolute;
+  z-index: 5;
+  right: 5.5%;
+  bottom: 34px;
   font-size: 9px;
-  text-transform: uppercase;
   letter-spacing: 2px;
-  line-height: 1.8;
+  color: var(--muted);
+}
+
+.hero-index strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.hero-side-note {
+  position: absolute;
+  z-index: 5;
+  right: 5.5%;
+  top: 50%;
+  writing-mode: vertical-rl;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .hero-scroll {
+  position: absolute;
+  z-index: 5;
+  left: 5.5%;
+  bottom: 35px;
   display: flex;
   gap: 12px;
   align-items: center;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .scroll-line {
-  width: 38px;
+  width: 44px;
   height: 1px;
-  background: var(--ink);
+  background: var(--muted);
+  transform-origin: left;
+  animation: scrollPulse 2s infinite;
 }
 
-.hero-fallback {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--serif);
-  font-size: clamp(110px, 22vw, 290px);
-  color: rgba(255,255,255,.13);
-  letter-spacing: -12px;
-  pointer-events: none;
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleX(.35); }
+  50% { transform: scaleX(1); }
 }
 
 /* MARQUEE */
 
 .marquee {
   overflow: hidden;
-  background: var(--ink);
-  color: white;
-  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  padding: 19px 0;
+  background: var(--paper);
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marqueeMove 35s linear infinite;
 }
 
 .marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  padding-right: 35px;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
   white-space: nowrap;
-  padding: 0 32px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 9px;
 }
 
 .marquee-item span {
   color: var(--accent);
-  margin-left: 25px;
+  font-size: 10px;
 }
 
-@keyframes marquee {
+@keyframes marqueeMove {
   to { transform: translateX(-50%); }
 }
 
-/* GENERAL SECTIONS */
+/* SHARED SECTION STYLES */
 
 .section {
-  padding: 100px 6%;
+  padding: 110px 5.5%;
 }
 
-.section-heading {
+.section-head {
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -375,53 +468,79 @@ input:focus-visible {
   margin-bottom: 45px;
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  font-size: 9px;
-  letter-spacing: 2.5px;
-  color: var(--muted);
-  margin-bottom: 15px;
+.section-title {
+  margin-top: 13px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(39px, 5.5vw, 73px);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
 }
 
-.section-title {
-  font-family: var(--serif);
-  font-size: clamp(35px, 5vw, 57px);
+.section-title em {
   font-weight: 400;
-  line-height: 1.05;
 }
 
 .text-link {
-  font-size: 10px;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--ink);
-  padding-bottom: 7px;
+  background: transparent;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   white-space: nowrap;
+}
+
+.text-link span {
+  font-size: 16px;
+  transition: transform .3s;
+}
+
+.text-link:hover span {
+  transform: translateX(5px);
 }
 
 /* PRODUCTS */
 
-.product-grid {
+.products {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0,1fr));
   gap: 18px;
 }
 
 .product-card {
   min-width: 0;
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity .75s var(--ease),
+    transform .75s var(--ease);
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.product-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .product-image-wrap {
   position: relative;
   overflow: hidden;
-  background: #e6e2da;
+  background: #e8e2d8;
   aspect-ratio: 3 / 4;
+  isolation: isolate;
+  transform-style: preserve-3d;
 }
 
 .product-image-wrap img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .7s var(--ease);
+  transition: transform .8s var(--ease), filter .5s;
 }
 
 .product-card:hover .product-image-wrap img {
@@ -430,366 +549,351 @@ input:focus-visible {
 
 .product-tag {
   position: absolute;
-  top: 12px;
+  z-index: 2;
   left: 12px;
-  background: var(--paper);
+  top: 12px;
   padding: 7px 9px;
+  background: var(--paper);
+  font-size: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 8px;
 }
 
-.quick-view {
+.product-quick {
   position: absolute;
+  z-index: 2;
   left: 10px;
   right: 10px;
   bottom: 10px;
-  padding: 14px;
-  background: rgba(255,254,250,.95);
+  padding: 13px;
   border: 0;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  background: rgba(250,248,244,.95);
   font-size: 9px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: .3s;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transform: translateY(130%);
+  transition: transform .4s var(--ease);
 }
 
-.product-card:hover .quick-view,
-.quick-view:focus-visible {
-  opacity: 1;
+.product-card:hover .product-quick,
+.product-quick:focus-visible {
   transform: translateY(0);
 }
 
 .product-info {
-  padding: 15px 0 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 15px;
+  align-items: start;
 }
 
 .product-name {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 400;
 }
 
 .product-category {
+  margin-top: 6px;
   color: var(--muted);
   font-size: 9px;
-  margin-top: 5px;
+  letter-spacing: .5px;
 }
 
 .product-price {
   font-size: 11px;
-  margin-top: 10px;
+  white-space: nowrap;
 }
 
-.product-price del {
-  color: var(--muted);
-  margin-left: 8px;
-}
-
-.color-dots {
+.product-swatches {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   margin-top: 12px;
 }
 
-.color-dot {
-  height: 11px;
-  width: 11px;
+.swatch {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0,0,0,.15);
 }
+
+.swatch.dark { background: #292925; }
+.swatch.cream { background: #d9d0c1; }
+.swatch.taupe { background: #9a8772; }
+.swatch.olive { background: #777762; }
 
 /* CAMPAIGN */
 
 .campaign {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 580px;
-  background: #e7e3db;
+  min-height: 620px;
+  background: #ded7cb;
+  overflow: hidden;
 }
 
 .campaign-image {
+  position: relative;
   overflow: hidden;
-  min-height: 430px;
+  min-height: 520px;
 }
 
 .campaign-image img {
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  height: 110%;
   object-fit: cover;
+  object-position: center 40%;
+  will-change: transform;
 }
 
 .campaign-copy {
-  padding: 70px 12%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
+  padding: 70px clamp(30px, 7vw, 100px);
 }
 
-.campaign-copy h2 {
-  font-family: var(--serif);
-  font-size: clamp(42px, 5vw, 70px);
-  font-weight: 400;
-  line-height: 1.03;
-  margin-bottom: 25px;
+.campaign-copy .section-title {
+  max-width: 480px;
 }
 
 .campaign-copy p {
-  max-width: 340px;
-  color: #65635d;
+  max-width: 360px;
+  margin-top: 22px;
+  color: #686258;
   font-size: 12px;
   line-height: 2;
 }
 
-.dark-button {
-  display: inline-block;
-  background: var(--ink);
-  color: white;
-  border: 1px solid var(--ink);
-  padding: 16px 24px;
+.campaign-copy .hero-cta {
   margin-top: 30px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 9px;
-  transition: .3s;
 }
 
-.dark-button:hover {
-  background: transparent;
-  color: var(--ink);
-}
+/* STATEMENT */
 
-/* BRAND STATEMENT */
-
-.brand-statement {
-  padding: 125px 8%;
+.statement {
+  padding: 150px 8%;
   text-align: center;
   background: var(--paper);
 }
 
-.brand-statement .eyebrow {
-  margin-bottom: 25px;
+.statement .eyebrow {
+  margin-bottom: 32px;
 }
 
-.brand-statement h2 {
-  max-width: 900px;
+.statement-title {
+  max-width: 1050px;
   margin: 0 auto;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(35px, 5.7vw, 75px);
-  line-height: 1.17;
+  font-size: clamp(37px, 6.5vw, 85px);
+  line-height: 1.15;
+  letter-spacing: -1.7px;
 }
 
-.brand-statement h2 em {
-  color: #9a876d;
+.statement-title em {
+  color: #95836a;
 }
 
-.brand-statement p {
-  max-width: 470px;
-  margin: 28px auto 0;
+.statement-note {
+  margin-top: 30px;
   color: var(--muted);
-  font-size: 11px;
-  line-height: 2;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
 /* EDITORIAL */
 
 .editorial-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: 1.1fr .9fr 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
-.editorial-card img {
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  transition: transform .7s var(--ease);
+.editorial-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+
+.editorial-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.editorial-card:nth-child(2) {
+  margin-top: 75px;
+}
+
+.editorial-card:nth-child(3) {
+  margin-top: 25px;
 }
 
 .editorial-image {
   overflow: hidden;
-  background: #e6e2da;
+  background: #e4ded3;
+  aspect-ratio: 4 / 5;
+}
+
+.editorial-card:nth-child(2) .editorial-image {
+  aspect-ratio: 3 / 4;
+}
+
+.editorial-image img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
 }
 
 .editorial-card:hover img {
-  transform: scale(1.04);
+  transform: scale(1.045);
 }
 
 .editorial-meta {
-  padding-top: 18px;
-}
-
-.editorial-meta span {
-  font-size: 9px;
-  color: var(--muted);
+  margin-top: 18px;
+  font-size: 8px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  color: var(--muted);
 }
 
-.editorial-meta h3 {
+.editorial-title {
+  margin-top: 9px;
   font-family: var(--serif);
   font-size: 23px;
   font-weight: 400;
-  margin-top: 8px;
+  line-height: 1.25;
 }
 
 /* NEWSLETTER */
 
 .newsletter {
-  padding: 90px 6%;
-  background: #e6e2da;
+  padding: 100px 20px;
+  background: #e8e2d8;
   text-align: center;
 }
 
-.newsletter h2 {
-  font-family: var(--serif);
-  font-size: clamp(35px, 5vw, 55px);
-  font-weight: 400;
+.newsletter .section-title {
+  font-size: clamp(39px, 5vw, 63px);
 }
 
 .newsletter p {
+  max-width: 390px;
+  margin: 18px auto 28px;
+  color: #6d685f;
   font-size: 11px;
-  color: #6e6b64;
-  margin: 15px auto 28px;
   line-height: 1.9;
 }
 
 .newsletter-form {
   display: flex;
-  max-width: 440px;
+  max-width: 430px;
   margin: 0 auto;
   border-bottom: 1px solid var(--ink);
 }
 
 .newsletter-form input {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
+  padding: 15px 0;
   background: transparent;
   border: 0;
-  padding: 15px 0;
+  outline: 0;
   font-size: 11px;
-  outline: none;
 }
 
 .newsletter-form button {
-  background: transparent;
+  flex-shrink: 0;
+  padding: 0 8px 0 20px;
   border: 0;
-  padding: 0 10px;
+  background: transparent;
   font-size: 9px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.3px;
   text-transform: uppercase;
+}
+
+.newsletter-message {
+  min-height: 18px;
+  margin-top: 15px;
+  font-size: 10px;
 }
 
 /* FOOTER */
 
 .footer {
-  padding: 65px 6% 25px;
-  background: var(--ink);
-  color: white;
+  padding: 65px 5.5% 25px;
+  background: #252520;
+  color: #f4f1eb;
 }
 
-.footer-top {
+.footer-main {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 45px;
-  padding-bottom: 55px;
+  padding-bottom: 65px;
 }
 
 .footer-brand .logo {
-  display: inline-block;
-  font-size: 25px;
+  text-align: left;
+  font-size: 30px;
 }
 
 .footer-brand p {
-  max-width: 250px;
-  font-size: 10px;
-  color: #a6a49e;
-  line-height: 2;
+  max-width: 240px;
   margin-top: 20px;
+  color: #aaa69d;
+  font-size: 10px;
+  line-height: 1.9;
 }
 
-.footer-column h4 {
+.footer-col h4 {
+  margin-bottom: 20px;
   font-size: 9px;
+  font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 20px;
 }
 
-.footer-column a {
+.footer-col a {
   display: block;
+  width: fit-content;
+  margin: 13px 0;
+  color: #aaa69d;
   font-size: 10px;
-  color: #aaa8a1;
-  margin: 12px 0;
   transition: color .2s;
 }
 
-.footer-column a:hover {
+.footer-col a:hover {
   color: white;
 }
 
 .footer-bottom {
-  border-top: 1px solid #363632;
-  padding-top: 22px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: #99978f;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.15);
+  color: #aaa69d;
   font-size: 9px;
-}
-
-/* MOBILE NAV */
-
-.mobile-nav {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: var(--bg);
-  padding: 25px;
-  transform: translateX(100%);
-  transition: transform .4s var(--ease);
-  display: flex;
-  flex-direction: column;
-}
-
-.mobile-nav.open {
-  transform: translateX(0);
-}
-
-.mobile-nav-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 35px;
-  border-bottom: 1px solid var(--line);
-}
-
-.mobile-nav-links {
-  display: flex;
-  flex-direction: column;
-  padding-top: 35px;
-}
-
-.mobile-nav-links a {
-  font-family: var(--serif);
-  font-size: 34px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line);
 }
 
 /* CART DRAWER */
 
-.drawer-backdrop {
+.overlay {
   position: fixed;
   inset: 0;
-  z-index: 299;
-  background: rgba(0,0,0,.4);
+  z-index: 110;
+  background: rgba(20,20,18,.48);
   opacity: 0;
   visibility: hidden;
-  transition: .3s;
+  transition: opacity .3s, visibility .3s;
 }
 
-.drawer-backdrop.open {
+.overlay.open {
   opacity: 1;
   visibility: visible;
 }
@@ -799,13 +903,14 @@ input:focus-visible {
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 300;
-  width: min(440px, 100%);
-  background: var(--paper);
-  transform: translateX(100%);
-  transition: transform .4s var(--ease);
+  z-index: 120;
   display: flex;
   flex-direction: column;
+  width: min(440px, 100%);
+  padding: 25px;
+  background: var(--paper);
+  transform: translateX(105%);
+  transition: transform .45s var(--ease);
 }
 
 .cart-drawer.open {
@@ -813,316 +918,459 @@ input:focus-visible {
 }
 
 .drawer-head {
-  padding: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
 }
 
 .drawer-head h2 {
   font-family: var(--serif);
+  font-size: 28px;
   font-weight: 400;
-  font-size: 26px;
 }
 
-.close-button {
+.close-btn {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
   background: transparent;
-  border: 0;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .cart-items {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 24px;
-}
-
-.empty-cart {
-  text-align: center;
-  padding: 70px 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 2;
+  padding: 15px 0;
 }
 
 .cart-item {
   display: grid;
-  grid-template-columns: 85px 1fr auto;
+  grid-template-columns: 85px 1fr;
   gap: 15px;
   padding: 15px 0;
   border-bottom: 1px solid var(--line);
 }
 
 .cart-item img {
-  width: 85px;
   height: 110px;
   object-fit: cover;
+  background: #e8e2d8;
 }
 
-.cart-item h4 {
+.cart-item-name {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: 16px;
+  font-size: 17px;
 }
 
-.cart-item p {
+.cart-item-meta {
+  margin-top: 6px;
+  color: var(--muted);
   font-size: 10px;
-  color: var(--muted);
-  margin-top: 7px;
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.quantity-controls button {
-  width: 25px;
-  height: 25px;
-  background: transparent;
-  border: 1px solid var(--line);
-}
-
-.remove-item {
-  margin-top: 10px;
-  background: transparent;
-  border: 0;
-  font-size: 9px;
-  text-decoration: underline;
-  color: var(--muted);
 }
 
 .cart-item-price {
-  font-size: 11px;
-  white-space: nowrap;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
-.drawer-foot {
-  padding: 22px 24px;
+.cart-item-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+}
+
+.quantity-control button {
+  width: 27px;
+  height: 27px;
+  border: 0;
+  background: transparent;
+}
+
+.quantity-control span {
+  min-width: 25px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.remove-item {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 9px;
+  text-decoration: underline;
+}
+
+.cart-empty {
+  padding: 55px 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 22px;
+  text-align: center;
+}
+
+.cart-bottom {
+  padding-top: 20px;
   border-top: 1px solid var(--line);
 }
 
-.subtotal-row {
+.cart-subtotal {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
   font-size: 13px;
-  margin-bottom: 12px;
 }
 
-.shipping-note {
-  font-size: 10px;
+.cart-note {
+  margin-bottom: 15px;
   color: var(--muted);
-  margin-bottom: 18px;
+  font-size: 9px;
+  line-height: 1.8;
 }
 
-.checkout-button {
+.checkout-btn {
   width: 100%;
   padding: 17px;
+  border: 1px solid var(--ink);
   background: var(--ink);
   color: white;
-  border: 1px solid var(--ink);
+  font-size: 9px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 10px;
 }
 
-/* QUICK VIEW MODAL */
+.checkout-btn:hover {
+  background: transparent;
+  color: var(--ink);
+}
 
-.modal-backdrop {
+/* QUICK VIEW */
+
+.quick-modal {
   position: fixed;
   inset: 0;
-  z-index: 400;
-  background: rgba(0,0,0,.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 130;
+  display: grid;
+  place-items: center;
   padding: 20px;
+  background: rgba(20,20,18,.55);
   opacity: 0;
   visibility: hidden;
-  transition: .3s;
+  transition: opacity .3s, visibility .3s;
 }
 
-.modal-backdrop.open {
+.quick-modal.open {
   opacity: 1;
   visibility: visible;
 }
 
-.quick-modal {
-  width: min(800px, 100%);
-  max-height: 90svh;
-  overflow-y: auto;
-  background: var(--paper);
+.quick-content {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  position: relative;
-  transform: translateY(15px);
-  transition: .3s;
+  width: min(760px, 100%);
+  max-height: 90svh;
+  overflow: auto;
+  background: var(--paper);
+  transform: translateY(20px);
+  transition: transform .35s var(--ease);
 }
 
-.modal-backdrop.open .quick-modal {
+.quick-modal.open .quick-content {
   transform: translateY(0);
 }
 
-.modal-image {
-  background: #e6e2da;
-  min-height: 440px;
+.quick-image {
+  min-height: 420px;
+  background: #e8e2d8;
 }
 
-.modal-image img {
+.quick-image img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.modal-content {
-  padding: 45px 35px;
+.quick-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
+  padding: clamp(25px, 4vw, 48px);
 }
 
-.modal-close {
+.quick-details .close-btn {
   position: absolute;
   top: 15px;
-  right: 18px;
-  background: transparent;
-  border: 0;
-  font-size: 25px;
-  z-index: 2;
+  right: 15px;
 }
 
-.modal-content h2 {
+.quick-details h2 {
+  padding-right: 15px;
   font-family: var(--serif);
-  font-size: 32px;
   font-weight: 400;
+  font-size: 32px;
 }
 
-.modal-price {
-  margin-top: 15px;
+.quick-price {
+  margin-top: 14px;
   font-size: 13px;
 }
 
-.modal-description {
+.quick-description {
+  margin-top: 18px;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.9;
-  margin-top: 20px;
 }
 
 .size-label {
+  margin-top: 28px;
   font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-top: 25px;
-  margin-bottom: 12px;
 }
 
-.size-options {
+.sizes {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
 }
 
-.size-option {
-  width: 43px;
-  height: 40px;
-  background: transparent;
+.size-btn {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 8px;
   border: 1px solid var(--line);
+  background: transparent;
   font-size: 10px;
 }
 
-.size-option.selected {
+.size-btn.selected {
   background: var(--ink);
   color: white;
   border-color: var(--ink);
 }
 
-.modal-add {
+.quick-add {
   width: 100%;
-  margin-top: 25px;
+  margin-top: 28px;
   padding: 16px;
+  border: 1px solid var(--ink);
   background: var(--ink);
   color: white;
-  border: 1px solid var(--ink);
-  text-transform: uppercase;
+  font-size: 9px;
   letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.quick-add:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+/* SEARCH */
+
+.search-panel {
+  position: fixed;
+  z-index: 105;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20vh 25px 30px;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity .3s, visibility .3s, transform .3s;
+}
+
+.search-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.search-close {
+  position: absolute;
+  top: 25px;
+  right: 5.5%;
+  border: 0;
+  background: transparent;
+  font-size: 27px;
+}
+
+.search-panel h2 {
+  font-family: var(--serif);
+  font-size: clamp(35px, 6vw, 60px);
+  font-weight: 400;
+}
+
+.search-form {
+  display: flex;
+  width: min(560px, 100%);
+  margin-top: 35px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 13px;
+}
+
+.search-form button {
+  border: 0;
+  background: transparent;
   font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.search-results {
+  width: min(560px, 100%);
+  max-height: 35vh;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.search-result {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--serif);
+  font-size: 16px;
+  text-align: left;
+}
+
+.search-result button {
+  border: 0;
+  background: transparent;
+  text-align: left;
 }
 
 /* TOAST */
 
 .toast {
   position: fixed;
+  z-index: 200;
   left: 50%;
   bottom: 25px;
-  z-index: 500;
-  transform: translate(-50%, 20px);
-  padding: 15px 22px;
+  max-width: calc(100% - 30px);
+  padding: 14px 20px;
   background: var(--ink);
   color: white;
   font-size: 11px;
-  opacity: 0;
-  visibility: hidden;
-  transition: .3s;
   text-align: center;
-  max-width: calc(100% - 30px);
+  transform: translate(-50%, 25px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
 }
 
 .toast.show {
   opacity: 1;
-  visibility: visible;
   transform: translate(-50%, 0);
+}
+
+/* SCROLL REVEALS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* RESPONSIVE */
 
+@media (min-width: 1500px) {
+  .hero {
+    height: 760px;
+  }
+}
+
 @media (max-width: 1000px) {
-  .header {
+  .nav {
     padding: 0 4%;
   }
 
-  .nav {
-    gap: 18px;
+  .nav-left {
+    gap: 15px;
   }
 
-  .nav a {
+  .nav-link, .nav-action {
     font-size: 9px;
   }
 
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .products {
+    grid-template-columns: repeat(2, minmax(0,1fr));
     gap: 28px 16px;
   }
 
-  .campaign-copy {
-    padding: 50px 8%;
+  .campaign {
+    min-height: 540px;
   }
 
-  .footer-top {
-    grid-template-columns: repeat(2, 1fr);
+  .campaign-image {
+    min-height: 480px;
   }
 
-  .hero-center-copy {
-    max-width: 300px;
+  .footer-main {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  .footer-col:last-child {
+    display: none;
   }
 }
 
 @media (max-width: 700px) {
-  .announcement {
-    font-size: 8px;
-    letter-spacing: 1.3px;
+  html {
+    scroll-padding-top: 70px;
   }
 
-  .header {
-    height: 65px;
-    padding: 0 20px;
+  .announcement {
+    font-size: 8px;
+    letter-spacing: 1.4px;
   }
 
   .nav {
+    height: 65px;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 0 18px;
+  }
+
+  .nav-left .nav-link,
+  .nav-right .search-action {
     display: none;
+  }
+
+  .nav-left {
+    gap: 0;
   }
 
   .menu-toggle {
@@ -1131,98 +1379,138 @@ input:focus-visible {
 
   .logo {
     font-size: 23px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
   }
 
-  .header-actions {
-    gap: 15px;
+  .logo span {
+    font-size: 6px;
   }
 
-  .hero-3d {
-    height: 760px;
-    min-height: 650px;
-    max-height: calc(100svh - 65px);
+  .nav-right {
+    gap: 0;
   }
 
-  .hero-overlay {
-    padding: 30px 22px 25px;
-  }
-
-  .hero-topline {
-    align-items: flex-start;
-  }
-
-  .hero-label,
-  .hero-index {
-    font-size: 8px;
-    letter-spacing: 1.5px;
-  }
-
-  .hero-center-copy {
-    top: auto;
-    bottom: 115px;
-    left: 22px;
-    right: 22px;
-    transform: none;
-    max-width: 290px;
-  }
-
-  .hero-title {
-    font-size: clamp(55px, 14vw, 82px);
-    letter-spacing: -2px;
-  }
-
-  .hero-kicker {
-    margin-bottom: 17px;
-    font-size: 8px;
-  }
-
-  .hero-description {
-    margin-top: 18px;
-    max-width: 240px;
-    font-size: 10px;
-  }
-
-  .hero-cta {
-    margin-top: 20px;
-  }
-
-  .hero-bottom p {
-    font-size: 8px;
-    letter-spacing: 1.2px;
-  }
-
-  .section {
-    padding: 70px 20px;
-  }
-
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    margin-bottom: 30px;
-  }
-
-  .section-title {
-    font-size: 42px;
-  }
-
-  .product-grid {
-    gap: 28px 12px;
-  }
-
-  .product-name {
-    font-size: 15px;
-  }
-
-  .product-category {
+  .nav-action {
     font-size: 9px;
   }
 
-  .quick-view {
-    opacity: 1;
+  .hero {
+    height: 690px;
+    min-height: 650px;
+    max-height: 790px;
+  }
+
+  .hero-copy {
+    top: 9%;
+    left: 7%;
+    width: 88%;
     transform: none;
-    padding: 11px 5px;
+  }
+
+  .hero-copy .eyebrow {
+    margin-bottom: 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(58px, 14vw, 90px);
+    letter-spacing: -2px;
+  }
+
+  .hero-title em {
+    margin-left: 13%;
+  }
+
+  .hero-description {
+    max-width: 245px;
+    margin-top: 18px;
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    margin-top: 17px;
+    padding: 13px 15px;
     font-size: 8px;
+  }
+
+  .hero-3d {
+    top: 24%;
+  }
+
+  .hero-index {
+    right: 18px;
+    bottom: 25px;
+    font-size: 8px;
+  }
+
+  .hero-side-note {
+    right: 15px;
+    top: 54%;
+    font-size: 7px;
+  }
+
+  .hero-scroll {
+    left: 18px;
+    bottom: 25px;
+    font-size: 7px;
+  }
+
+  .hero-grid {
+    background-size: 46px 46px;
+  }
+
+  .section {
+    padding: 75px 18px;
+  }
+
+  .section-head {
+    align-items: flex-end;
+    margin-bottom: 28px;
+  }
+
+  .section-title {
+    font-size: clamp(37px, 10vw, 57px);
+  }
+
+  .section-head .text-link {
+    font-size: 8px;
+    gap: 6px;
+  }
+
+  .products {
+    gap: 28px 12px;
+  }
+
+  .product-info {
+    gap: 6px;
+  }
+
+  .product-name {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 10px;
+  }
+
+  .product-category {
+    font-size: 8px;
+  }
+
+  .product-tag {
+    left: 7px;
+    top: 7px;
+    padding: 6px;
+    font-size: 7px;
+  }
+
+  .product-quick {
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    padding: 12px 4px;
+    font-size: 8px;
+    transform: none;
   }
 
   .campaign {
@@ -1230,104 +1518,118 @@ input:focus-visible {
   }
 
   .campaign-image {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
+    min-height: 430px;
   }
 
   .campaign-copy {
-    padding: 50px 25px 60px;
+    padding: 55px 25px 65px;
   }
 
-  .campaign-copy h2 {
-    font-size: 48px;
+  .campaign-copy .section-title {
+    font-size: 49px;
   }
 
-  .brand-statement {
-    padding: 85px 25px;
+  .campaign-copy p {
+    font-size: 11px;
   }
 
-  .brand-statement h2 {
-    font-size: 39px;
+  .statement {
+    padding: 95px 22px;
+  }
+
+  .statement-title {
+    font-size: clamp(36px, 9vw, 57px);
+    letter-spacing: -1px;
   }
 
   .editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 12px;
   }
 
-  .editorial-card img {
-    aspect-ratio: 4 / 3;
+  .editorial-card:nth-child(2),
+  .editorial-card:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .editorial-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .editorial-card:first-child .editorial-image {
+    aspect-ratio: 5 / 4;
+  }
+
+  .editorial-title {
+    font-size: 18px;
+  }
+
+  .editorial-meta {
+    font-size: 7px;
   }
 
   .newsletter {
-    padding: 70px 22px;
+    padding: 75px 20px;
   }
 
   .footer {
-    padding: 55px 22px 22px;
+    padding: 50px 20px 20px;
   }
 
-  .footer-top {
+  .footer-main {
     grid-template-columns: 1fr 1fr;
     gap: 35px 20px;
+    padding-bottom: 35px;
   }
 
   .footer-brand {
     grid-column: 1 / -1;
   }
 
+  .footer-col:last-child {
+    display: block;
+  }
+
   .footer-bottom {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
 
-  .quick-modal {
+  .quick-content {
     grid-template-columns: 1fr;
-    max-height: 90svh;
+    width: min(430px, 100%);
+    max-height: 88svh;
   }
 
-  .modal-image {
+  .quick-image {
     min-height: 0;
-    height: 270px;
+    height: 35svh;
   }
 
-  .modal-content {
-    padding: 28px 24px;
+  .quick-details {
+    padding: 25px;
   }
 
-  .modal-content h2 {
+  .quick-details h2 {
     font-size: 27px;
   }
 
-  .modal-description {
-    margin-top: 12px;
+  .quick-details .close-btn {
+    top: 10px;
+    right: 10px;
+    background: var(--paper);
+  }
+
+  .quick-description {
+    margin-top: 10px;
   }
 
   .size-label {
     margin-top: 18px;
   }
-}
 
-@media (max-width: 380px) {
-  .product-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 22px 9px;
-  }
-
-  .product-name {
-    font-size: 14px;
-  }
-
-  .hero-center-copy {
-    bottom: 105px;
-  }
-
-  .hero-title {
-    font-size: 54px;
-  }
-
-  .footer-top {
-    gap: 30px 12px;
+  .quick-add {
+    margin-top: 18px;
   }
 }
 
@@ -1340,6 +1642,13 @@ input:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+
+  .product-card,
+  .editorial-card,
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>
 </head>
@@ -1347,378 +1656,749 @@ input:focus-visible {
 <body>
 
 <div class="announcement">
-  Complimentary shipping on orders over €75
+  Complimentary shipping on qualifying orders · Discover the new collection
 </div>
 
-<header class="header">
-  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+<header class="header" id="siteHeader">
+  <nav class="nav">
+    <div class="nav-left">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+      <a class="nav-link" href="#collection">Shop</a>
+      <a class="nav-link" href="#campaign">The Edit</a>
+      <a class="nav-link" href="#journal">Journal</a>
+    </div>
 
-  <a href="#home" class="logo">VĒLORA</a>
+    <a class="logo" href="#" aria-label="VĒLORA home">
+      VĒLORA
+      <span>BEYOND ORDINARY</span>
+    </a>
 
-  <nav class="nav" aria-label="Main navigation">
-    <a href="#shop">Shop</a>
-    <a href="#collection">Collection</a>
-    <a href="#story">Our Story</a>
-    <a href="#journal">Journal</a>
+    <div class="nav-right">
+      <button class="nav-action search-action" id="searchOpen">Search</button>
+      <button class="nav-action" id="cartOpen" aria-label="Open shopping bag">
+        Bag <span class="bag-count" id="bagCount">0</span>
+      </button>
+    </div>
   </nav>
-
-  <div class="header-actions">
-    <button class="icon-button" id="searchButton" aria-label="Search">⌕</button>
-    <button class="icon-button" id="cartButton" aria-label="Open shopping bag">
-      ♧
-      <span class="cart-count" id="cartCount">0</span>
-    </button>
-  </div>
 </header>
 
-<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-  <div class="mobile-nav-head">
-    <a href="#home" class="logo">VĒLORA</a>
-    <button class="close-button" id="closeMobileNav" aria-label="Close menu">×</button>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-top">
+    <a class="logo" href="#">VĒLORA<span>BEYOND ORDINARY</span></a>
+    <button id="menuClose" aria-label="Close menu">×</button>
   </div>
 
-  <div class="mobile-nav-links">
-    <a href="#shop">Shop</a>
-    <a href="#collection">Collection</a>
-    <a href="#story">Our Story</a>
-    <a href="#journal">Journal</a>
+  <div class="mobile-menu-links">
+    <a href="#collection">Shop collection ↗</a>
+    <a href="#campaign">The edit ↗</a>
+    <a href="#statement">Our philosophy ↗</a>
+    <a href="#journal">Journal ↗</a>
   </div>
-</nav>
+</div>
 
 <main>
 
-  <!-- INTERACTIVE 3D HERO -->
-  <section class="hero-3d" id="home">
-    <div class="hero-canvas" id="heroCanvas"></div>
-    <div class="hero-fallback" aria-hidden="true">V</div>
+  <!-- SCROLL-DRIVEN 3D HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-background"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-grain"></div>
 
-    <div class="hero-overlay">
-      <div class="hero-topline">
-        <p class="hero-label">Contemporary Wardrobe<br>Collection No. 01</p>
-        <p class="hero-index">Autumn / Winter<br>2026</p>
-      </div>
-
-      <div class="hero-center-copy">
-        <p class="hero-kicker">The Art of Being Different</p>
-        <h1 class="hero-title">Beyond<br><em>Ordinary.</em></h1>
-        <p class="hero-description">
-          Thoughtfully selected pieces for a wardrobe that speaks without saying a word.
-        </p>
-        <a href="#shop" class="hero-cta">
-          Discover the collection <span>↗</span>
-        </a>
-      </div>
-
-      <div class="hero-bottom">
-        <p>Designed for your<br>own kind of presence.</p>
-        <p class="hero-scroll"><span class="scroll-line"></span> Scroll to explore</p>
-      </div>
+    <div class="hero-copy">
+      <p class="eyebrow">The new perspective · Collection 01</p>
+      <h1 class="hero-title">Beyond<br><em>ordinary.</em></h1>
+      <p class="hero-description">
+        Thoughtful forms. Quiet confidence. A considered approach to the way we dress.
+      </p>
+      <a href="#collection" class="hero-cta">
+        Explore the collection <span>↗</span>
+      </a>
     </div>
+
+    <div class="hero-3d" id="hero3D">
+      <canvas id="heroCanvas" aria-label="Interactive three-dimensional chrome sculpture"></canvas>
+    </div>
+
+    <div class="hero-side-note">Form · Texture · Perspective</div>
+
+    <div class="hero-scroll">
+      <span class="scroll-line"></span>
+      Scroll to explore
+    </div>
+
+    <div class="hero-index"><strong>01</strong> / 04</div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-label="VĒLORA collection highlights">
-    <div class="marquee-track" aria-hidden="true">
-      <div class="marquee-item">Quiet Confidence <span>✳</span></div>
-      <div class="marquee-item">Considered Design <span>✳</span></div>
-      <div class="marquee-item">Everyday Luxury <span>✳</span></div>
-      <div class="marquee-item">Made to Move <span>✳</span></div>
-      <div class="marquee-item">Quiet Confidence <span>✳</span></div>
-      <div class="marquee-item">Considered Design <span>✳</span></div>
-      <div class="marquee-item">Everyday Luxury <span>✳</span></div>
-      <div class="marquee-item">Made to Move <span>✳</span></div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Less, but considered <span>✳</span> Designed to endure <span>✳</span> Beyond the expected <span>✳</span> A study in form <span>✳</span></div>
+      <div class="marquee-item">Less, but considered <span>✳</span> Designed to endure <span>✳</span> Beyond the expected <span>✳</span> A study in form <span>✳</span></div>
     </div>
   </div>
 
-  <!-- SHOP -->
-  <section class="section" id="shop">
-    <div class="section-heading">
+  <!-- COLLECTION -->
+  <section class="section" id="collection">
+    <div class="section-head reveal">
       <div>
-        <p class="eyebrow">The essentials</p>
-        <h2 class="section-title">The Current Edit</h2>
+        <p class="eyebrow">A considered wardrobe</p>
+        <h2 class="section-title">The <em>essentials.</em></h2>
       </div>
-      <a href="#collection" class="text-link">Explore all pieces ↗</a>
+      <a href="#collection" class="text-link" id="viewAll">Discover all <span>↗</span></a>
     </div>
 
-    <div class="product-grid" id="productGrid"></div>
+    <div class="products" id="productGrid"></div>
   </section>
 
   <!-- CAMPAIGN -->
-  <section class="campaign" id="collection">
+  <section class="campaign" id="campaign">
     <div class="campaign-image">
       <img
-        src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85"
+        id="campaignImage"
+        src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=85"
         alt="Contemporary fashion editorial"
         loading="lazy">
     </div>
 
-    <div class="campaign-copy">
-      <p class="eyebrow">Collection 01 / 2026</p>
-      <h2>Less, but<br>better.</h2>
+    <div class="campaign-copy reveal">
+      <p class="eyebrow">The autumn edit · 2026</p>
+      <h2 class="section-title">An art of<br><em>understatement.</em></h2>
       <p>
-        A considered approach to getting dressed. Clean silhouettes, tactile fabrics,
-        and versatile pieces designed to become part of your everyday story.
+        Pieces that speak without saying too much. A refined palette, confident proportions, and the freedom to make them your own.
       </p>
-      <a href="#shop" class="dark-button">Discover the edit ↗</a>
+      <a href="#collection" class="hero-cta">Shop the edit <span>↗</span></a>
     </div>
   </section>
 
-  <!-- BRAND STATEMENT -->
-  <section class="brand-statement" id="story">
-    <p class="eyebrow">The VĒLORA perspective</p>
-    <h2>Style isn't about being seen. It's about being <em>remembered.</em></h2>
-    <p>
-      We believe the best wardrobe isn't the loudest one. It's the one that feels
-      unmistakably yours. Thoughtful choices, lasting appeal, and confidence in every detail.
-    </p>
+  <!-- BRAND PHILOSOPHY -->
+  <section class="statement" id="statement">
+    <p class="eyebrow reveal">Our point of view</p>
+    <h2 class="statement-title reveal">
+      Style isn't about having more.
+      It's about knowing what
+      <em>matters.</em>
+    </h2>
+    <p class="statement-note reveal">Fewer distractions. More intention.</p>
   </section>
 
-  <!-- EDITORIAL -->
+  <!-- JOURNAL -->
   <section class="section" id="journal">
-    <div class="section-heading">
+    <div class="section-head reveal">
       <div>
         <p class="eyebrow">Notes on modern living</p>
-        <h2 class="section-title">The Journal</h2>
+        <h2 class="section-title">The <em>journal.</em></h2>
       </div>
-      <a href="#newsletter" class="text-link">Stay in the know ↗</a>
+      <a href="#journal" class="text-link">Our perspective <span>↗</span></a>
     </div>
 
     <div class="editorial-grid">
-      <a href="#shop" class="editorial-card">
-        <div class="editorial-image">
-          <img
-            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85"
-            alt="Modern everyday wardrobe"
-            loading="lazy">
-        </div>
-        <div class="editorial-meta">
-          <span>Style notes / 01</span>
-          <h3>The art of dressing simply</h3>
-        </div>
-      </a>
+      <article class="editorial-card">
+        <a href="#statement">
+          <div class="editorial-image">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"
+                 alt="Contemporary wardrobe styling" loading="lazy">
+          </div>
+          <p class="editorial-meta">01 · Personal style</p>
+          <h3 class="editorial-title">The quiet power of knowing your style.</h3>
+        </a>
+      </article>
 
-      <a href="#shop" class="editorial-card">
-        <div class="editorial-image">
-          <img
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85"
-            alt="Neutral wardrobe essentials"
-            loading="lazy">
-        </div>
-        <div class="editorial-meta">
-          <span>The wardrobe / 02</span>
-          <h3>Pieces that stay with you</h3>
-        </div>
-      </a>
+      <article class="editorial-card">
+        <a href="#collection">
+          <div class="editorial-image">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85"
+                 alt="Carefully selected clothing pieces" loading="lazy">
+          </div>
+          <p class="editorial-meta">02 · The wardrobe</p>
+          <h3 class="editorial-title">Fewer pieces. Better possibilities.</h3>
+        </a>
+      </article>
 
-      <a href="#shop" class="editorial-card">
-        <div class="editorial-image">
-          <img
-            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
-            alt="Contemporary street fashion"
-            loading="lazy">
-        </div>
-        <div class="editorial-meta">
-          <span>Perspective / 03</span>
-          <h3>Finding your own rhythm</h3>
-        </div>
-      </a>
+      <article class="editorial-card">
+        <a href="#campaign">
+          <div class="editorial-image">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+                 alt="Modern fashion editorial portrait" loading="lazy">
+          </div>
+          <p class="editorial-meta">03 · Perspective</p>
+          <h3 class="editorial-title">A different way to see the everyday.</h3>
+        </a>
+      </article>
     </div>
   </section>
 
   <!-- NEWSLETTER -->
   <section class="newsletter" id="newsletter">
-    <p class="eyebrow">A letter from VĒLORA</p>
-    <h2>Stay in the know.</h2>
-    <p>
-      New collections, considered edits, and occasional notes on getting dressed.<br>
-      Only when we have something worth saying.
+    <p class="eyebrow reveal">A note from VĒLORA</p>
+    <h2 class="section-title reveal">Stay in the <em>know.</em></h2>
+    <p class="reveal">
+      New collections, thoughtful stories, and occasional things worth sharing. Nothing more.
     </p>
 
-    <form class="newsletter-form" id="newsletterForm">
-      <input
-        type="email"
-        id="newsletterEmail"
-        placeholder="Your email address"
-        aria-label="Your email address"
-        required>
+    <form class="newsletter-form reveal" id="newsletterForm">
+      <input type="email" id="newsletterEmail" placeholder="Your email address" aria-label="Your email address" required>
       <button type="submit">Sign me up ↗</button>
     </form>
+
+    <div class="newsletter-message" id="newsletterMessage" aria-live="polite"></div>
   </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-top">
+  <div class="footer-main">
     <div class="footer-brand">
-      <a href="#home" class="logo">VĒLORA</a>
+      <a class="logo" href="#">VĒLORA<span>BEYOND ORDINARY</span></a>
       <p>
-        Contemporary essentials for a life lived with intention.
-        Find your style. Make it your own.
+        A study in considered fashion. Designed around the things that matter, made for the moments that stay.
       </p>
     </div>
 
-    <div class="footer-column">
+    <div class="footer-col">
       <h4>Explore</h4>
-      <a href="#shop">Shop all</a>
-      <a href="#collection">Collections</a>
-      <a href="#story">Our story</a>
+      <a href="#collection">New collection</a>
+      <a href="#campaign">The edit</a>
       <a href="#journal">Journal</a>
+      <a href="#statement">Our philosophy</a>
     </div>
 
-    <div class="footer-column">
-      <h4>Customer care</h4>
-      <a href="#footer">Shipping & returns</a>
-      <a href="#footer">Size guide</a>
-      <a href="#footer">FAQs</a>
-      <a href="mailto:hello@velora.example">Contact us</a>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <a href="#newsletter">Contact</a>
+      <a href="#newsletter">Shipping information</a>
+      <a href="#newsletter">Returns & exchanges</a>
+      <a href="#newsletter">FAQs</a>
     </div>
 
-    <div class="footer-column">
+    <div class="footer-col">
       <h4>Follow along</h4>
-      <a href="#footer">Instagram ↗</a>
-      <a href="#footer">Pinterest ↗</a>
-      <a href="#footer">TikTok ↗</a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">Pinterest ↗</a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
     </div>
   </div>
 
-  <div class="footer-bottom" id="footer">
+  <div class="footer-bottom">
     <span>© <span id="year"></span> VĒLORA. All rights reserved.</span>
-    <span>Thoughtfully considered. Effortlessly worn.</span>
+    <span>Designed beyond the ordinary.</span>
   </div>
 </footer>
 
-<!-- CART BACKDROP -->
-<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<!-- SHARED OVERLAY -->
+<div class="overlay" id="overlay"></div>
 
-<!-- CART DRAWER -->
-<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping bag">
+<!-- CART -->
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping bag" aria-hidden="true">
   <div class="drawer-head">
-    <h2>Your Bag <span id="drawerItemCount">(0)</span></h2>
-    <button class="close-button" id="closeCart" aria-label="Close bag">×</button>
+    <h2>Your bag <span id="drawerCount">(0)</span></h2>
+    <button class="close-btn" id="cartClose" aria-label="Close shopping bag">×</button>
   </div>
 
   <div class="cart-items" id="cartItems"></div>
 
-  <div class="drawer-foot">
-    <div class="subtotal-row">
+  <div class="cart-bottom">
+    <div class="cart-subtotal">
       <span>Subtotal</span>
-      <strong id="cartSubtotal">€0.00</strong>
+      <strong id="cartSubtotal">$0.00</strong>
     </div>
-    <p class="shipping-note">Shipping and discounts calculated at checkout.</p>
-    <button class="checkout-button" id="checkoutButton">Continue to checkout ↗</button>
+    <p class="cart-note">Shipping and taxes are calculated at checkout.</p>
+    <button class="checkout-btn" id="checkoutButton">Continue to checkout ↗</button>
   </div>
 </aside>
 
 <!-- QUICK VIEW -->
-<div class="modal-backdrop" id="quickModalBackdrop">
-  <div class="quick-modal" role="dialog" aria-modal="true" aria-labelledby="modalProductName">
-    <button class="modal-close" id="closeQuickModal" aria-label="Close product details">×</button>
-
-    <div class="modal-image">
-      <img id="modalImage" src="" alt="">
+<div class="quick-modal" id="quickModal" aria-hidden="true">
+  <div class="quick-content">
+    <div class="quick-image">
+      <img id="quickImage" src="" alt="">
     </div>
 
-    <div class="modal-content">
-      <p class="eyebrow" id="modalCategory">The collection</p>
-      <h2 id="modalProductName">Product name</h2>
-      <p class="modal-price" id="modalPrice"></p>
-      <p class="modal-description" id="modalDescription"></p>
+    <div class="quick-details">
+      <button class="close-btn" id="quickClose" aria-label="Close product details">×</button>
+      <p class="eyebrow" id="quickCategory"></p>
+      <h2 id="quickName"></h2>
+      <p class="quick-price" id="quickPrice"></p>
+      <p class="quick-description" id="quickDescription">
+        Considered design, refined detailing, and a silhouette made to move with you.
+      </p>
 
       <p class="size-label">Select your size</p>
-      <div class="size-options" id="sizeOptions"></div>
+      <div class="sizes" id="quickSizes">
+        <button class="size-btn" data-size="XS">XS</button>
+        <button class="size-btn" data-size="S">S</button>
+        <button class="size-btn" data-size="M">M</button>
+        <button class="size-btn" data-size="L">L</button>
+        <button class="size-btn" data-size="XL">XL</button>
+      </div>
 
-      <button class="modal-add" id="modalAddButton">Add to bag</button>
+      <button class="quick-add" id="quickAdd">Add to bag</button>
     </div>
   </div>
 </div>
 
+<!-- SEARCH -->
+<div class="search-panel" id="searchPanel" aria-hidden="true">
+  <button class="search-close" id="searchClose" aria-label="Close search">×</button>
+  <p class="eyebrow">Find your next essential</p>
+  <h2>What are you looking for?</h2>
+
+  <form class="search-form" id="searchForm">
+    <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search products" autocomplete="off">
+    <button type="submit">Search ↗</button>
+  </form>
+
+  <div class="search-results" id="searchResults"></div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script>
-/* =========================
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js";
+
+/* ==========================================
    PRODUCT DATA
-========================= */
+========================================== */
 
 const products = [
   {
-    id: 1,
-    name: "The Sculpted Blazer",
-    category: "Tailored essentials",
-    price: 129,
-    oldPrice: null,
-    badge: "Bestseller",
-    image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=85",
-    description: "A modern tailored silhouette designed to bring effortless structure to your everyday wardrobe.",
-    colors: ["#c5b9a5", "#292824", "#7c7b72"],
-    sizes: ["XS", "S", "M", "L", "XL"]
-  },
-  {
-    id: 2,
-    name: "Everyday Knit",
-    category: "Soft essentials",
-    price: 75,
-    oldPrice: null,
-    badge: "New arrival",
-    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=900&q=85",
-    description: "An easy layering piece with a soft feel and a relaxed shape for everyday wear.",
-    colors: ["#e8dfd0", "#5d6256", "#222222"],
-    sizes: ["XS", "S", "M", "L", "XL"]
-  },
-  {
-    id: 3,
-    name: "The Daily Trouser",
-    category: "Modern classics",
+    id: "p01",
+    name: "The Sculpted Shirt",
+    category: "Modern essentials",
     price: 89,
-    oldPrice: null,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=85",
-    description: "A versatile trouser with a clean profile, created to move easily between casual and refined looks.",
-    colors: ["#c7b69d", "#292824"],
-    sizes: ["XS", "S", "M", "L", "XL"]
+    tag: "Bestseller",
+    image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85",
+    colors: ["dark", "cream", "taupe"],
+    description: "A considered everyday essential with clean lines, a relaxed silhouette, and versatile styling."
   },
   {
-    id: 4,
-    name: "Essential Overshirt",
-    category: "Everyday layers",
-    price: 95,
-    oldPrice: 115,
-    badge: "Limited offer",
-    image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
-    description: "A relaxed overshirt that works as a light outer layer or a considered addition to your daily outfit.",
-    colors: ["#a69a83", "#33342f", "#e6e0d5"],
-    sizes: ["S", "M", "L", "XL"]
+    id: "p02",
+    name: "Relaxed Tailoring",
+    category: "Contemporary form",
+    price: 145,
+    tag: "New arrival",
+    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=900&q=85",
+    colors: ["taupe", "dark", "olive"],
+    description: "An effortless approach to tailoring, balancing structure with movement and understated detail."
+  },
+  {
+    id: "p03",
+    name: "The Essential Knit",
+    category: "Soft structure",
+    price: 110,
+    tag: "",
+    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=900&q=85",
+    colors: ["cream", "taupe", "dark"],
+    description: "A refined layering piece designed for texture, comfort, and a wardrobe that works together."
+  },
+  {
+    id: "p04",
+    name: "Everyday Form",
+    category: "Quiet statement",
+    price: 125,
+    tag: "Limited edit",
+    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",
+    colors: ["olive", "dark", "cream"],
+    description: "A contemporary silhouette that brings a subtle sense of occasion to everyday dressing."
   }
 ];
 
-const currency = new Intl.NumberFormat("en-IE", {
-  style: "currency",
-  currency: "EUR"
-});
-
-const money = value => currency.format(value);
-
-/* =========================
-   DOM REFERENCES
-========================= */
+const money = value => "$" + Number(value).toFixed(2);
 
 const productGrid = document.getElementById("productGrid");
-const cartCount = document.getElementById("cartCount");
+const bagCount = document.getElementById("bagCount");
+const drawerCount = document.getElementById("drawerCount");
 const cartDrawer = document.getElementById("cartDrawer");
-const drawerBackdrop = document.getElementById("drawerBackdrop");
-const cartItemsElement = document.getElementById("cartItems");
-const cartSubtotal = document.getElementById("cartSubtotal");
-const drawerItemCount = document.getElementById("drawerItemCount");
-const modalBackdrop = document.getElementById("quickModalBackdrop");
+const overlay = document.getElementById("overlay");
+const quickModal = document.getElementById("quickModal");
+const searchPanel = document.getElementById("searchPanel");
 const toastElement = document.getElementById("toast");
 
-let selectedProduct = null;
-let selectedSize = null;
-let toastTimer = null;
+let activeProduct = null;
+let selectedSize = "";
+let toastTimer;
 
-/* =========================
+function renderProducts(list = products) {
+  productGrid.innerHTML = list.map((product, index) => `
+    <article class="product-card" data-product-id="${product.id}" style="transition-delay:${(index % 4) * 90}ms">
+      <div class="product-image-wrap">
+        ${product.tag ? `<span class="product-tag">${product.tag}</span>` : ""}
+        <img src="${product.image}" alt="${product.name}" loading="lazy">
+        <button class="product-quick" data-quick="${product.id}">Quick view +</button>
+      </div>
+      <div class="product-info">
+        <div>
+          <h3 class="product-name">${product.name}</h3>
+          <p class="product-category">${product.category}</p>
+          <div class="product-swatches" aria-label="Available colors">
+            ${product.colors.map(color => `<span class="swatch ${color}"></span>`).join("")}
+          </div>
+        </div>
+        <span class="product-price">${money(product.price)}</span>
+      </div>
+    </article>
+  `).join("");
+
+  observeReveals();
+  attachProductTilt();
+}
+
+renderProducts();
+
+/* ==========================================
+   CART WITH LOCAL STORAGE
+========================================== */
+
+const CART_KEY = "velora-cart";
+
+function loadCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    if (!Array.isArray(saved)) return [];
+
+    return saved.filter(item =>
+      products.some(product => product.id === item.id) &&
+      typeof item.size === "string" &&
+      Number.isFinite(Number(item.quantity)) &&
+      Number(item.quantity) > 0
+    ).map(item => ({
+      id: item.id,
+      size: item.size,
+      quantity: Math.max(1, Math.floor(Number(item.quantity)))
+    }));
+  } catch {
+    return [];
+  }
+}
+
+let cart = loadCart();
+
+function saveCart() {
+  try {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  } catch {
+    showToast("Your browser couldn't save the bag for this session.");
+  }
+}
+
+function getProduct(id) {
+  return products.find(product => product.id === id);
+}
+
+function cartQuantity() {
+  return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
+function cartTotal() {
+  return cart.reduce((total, item) => {
+    const product = getProduct(item.id);
+    return total + (product ? product.price * item.quantity : 0);
+  }, 0);
+}
+
+function updateBagCount() {
+  bagCount.textContent = cartQuantity();
+  drawerCount.textContent = `(${cartQuantity()})`;
+}
+
+function renderCart() {
+  updateBagCount();
+
+  if (!cart.length) {
+    document.getElementById("cartItems").innerHTML =
+      `<div class="cart-empty">Your bag is waiting for something special.</div>`;
+  } else {
+    document.getElementById("cartItems").innerHTML = cart.map((item, index) => {
+      const product = getProduct(item.id);
+      if (!product) return "";
+
+      return `
+        <div class="cart-item">
+          <img src="${product.image}" alt="${product.name}">
+          <div>
+            <h3 class="cart-item-name">${product.name}</h3>
+            <p class="cart-item-meta">Size: ${item.size}</p>
+            <p class="cart-item-price">${money(product.price * item.quantity)}</p>
+            <div class="cart-item-controls">
+              <div class="quantity-control">
+                <button data-qty="${index}" data-delta="-1" aria-label="Decrease quantity">−</button>
+                <span>${item.quantity}</span>
+                <button data-qty="${index}" data-delta="1" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="remove-item" data-remove="${index}">Remove</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  document.getElementById("cartSubtotal").textContent = money(cartTotal());
+}
+
+function addToCart(product, size) {
+  const existing = cart.find(item => item.id === product.id && item.size === size);
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ id: product.id, size, quantity: 1 });
+  }
+
+  saveCart();
+  renderCart();
+  showToast(`${product.name} added to your bag`);
+}
+
+renderCart();
+
+document.getElementById("cartItems").addEventListener("click", event => {
+  const qtyButton = event.target.closest("[data-qty]");
+  const removeButton = event.target.closest("[data-remove]");
+
+  if (qtyButton) {
+    const index = Number(qtyButton.dataset.qty);
+    const delta = Number(qtyButton.dataset.delta);
+
+    if (!cart[index]) return;
+
+    cart[index].quantity += delta;
+
+    if (cart[index].quantity <= 0) {
+      cart.splice(index, 1);
+    }
+
+    saveCart();
+    renderCart();
+  }
+
+  if (removeButton) {
+    cart.splice(Number(removeButton.dataset.remove), 1);
+    saveCart();
+    renderCart();
+  }
+});
+
+/* ==========================================
+   DRAWER / OVERLAY
+========================================== */
+
+function syncOverlay() {
+  const open = cartDrawer.classList.contains("open") ||
+               quickModal.classList.contains("open");
+
+  overlay.classList.toggle("open", open);
+  document.body.classList.toggle("locked", open);
+
+  cartDrawer.setAttribute(
+    "aria-hidden",
+    cartDrawer.classList.contains("open") ? "false" : "true"
+  );
+
+  quickModal.setAttribute(
+    "aria-hidden",
+    quickModal.classList.contains("open") ? "false" : "true"
+  );
+}
+
+function openCart() {
+  closeQuickView();
+  closeSearch();
+  cartDrawer.classList.add("open");
+  syncOverlay();
+}
+
+function closeCart() {
+  cartDrawer.classList.remove("open");
+  syncOverlay();
+}
+
+document.getElementById("cartOpen").addEventListener("click", openCart);
+document.getElementById("cartClose").addEventListener("click", closeCart);
+
+/* ==========================================
+   QUICK VIEW
+========================================== */
+
+function openQuickView(id) {
+  const product = getProduct(id);
+  if (!product) return;
+
+  activeProduct = product;
+  selectedSize = "";
+
+  document.getElementById("quickImage").src = product.image;
+  document.getElementById("quickImage").alt = product.name;
+  document.getElementById("quickName").textContent = product.name;
+  document.getElementById("quickCategory").textContent = product.category;
+  document.getElementById("quickPrice").textContent = money(product.price);
+
+  document.querySelectorAll(".size-btn").forEach(button => {
+    button.classList.remove("selected");
+  });
+
+  cartDrawer.classList.remove("open");
+  closeSearch();
+  quickModal.classList.add("open");
+  syncOverlay();
+}
+
+function closeQuickView() {
+  quickModal.classList.remove("open");
+  syncOverlay();
+}
+
+productGrid.addEventListener("click", event => {
+  const button = event.target.closest("[data-quick]");
+  if (button) openQuickView(button.dataset.quick);
+});
+
+document.getElementById("quickClose").addEventListener("click", closeQuickView);
+
+document.getElementById("quickSizes").addEventListener("click", event => {
+  const button = event.target.closest("[data-size]");
+  if (!button) return;
+
+  selectedSize = button.dataset.size;
+
+  document.querySelectorAll(".size-btn").forEach(item => {
+    item.classList.toggle("selected", item === button);
+  });
+});
+
+document.getElementById("quickAdd").addEventListener("click", () => {
+  if (!activeProduct) return;
+
+  if (!selectedSize) {
+    showToast("Please select a size first.");
+    return;
+  }
+
+  addToCart(activeProduct, selectedSize);
+  closeQuickView();
+  openCart();
+});
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+function openSearch() {
+  closeCart();
+  closeQuickView();
+  searchPanel.classList.add("open");
+  searchPanel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked");
+
+  setTimeout(() => document.getElementById("searchInput").focus(), 100);
+}
+
+function closeSearch() {
+  searchPanel.classList.remove("open");
+  searchPanel.setAttribute("aria-hidden", "true");
+
+  if (!cartDrawer.classList.contains("open") &&
+      !quickModal.classList.contains("open")) {
+    document.body.classList.remove("locked");
+  }
+}
+
+document.getElementById("searchOpen").addEventListener("click", openSearch);
+document.getElementById("searchClose").addEventListener("click", closeSearch);
+
+function showSearchResults(query) {
+  const results = products.filter(product =>
+    `${product.name} ${product.category}`.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const container = document.getElementById("searchResults");
+
+  if (!query.trim()) {
+    container.innerHTML = "";
+    return;
+  }
+
+  if (!results.length) {
+    container.innerHTML = `<p class="cart-note">No matching products. Try another search.</p>`;
+    return;
+  }
+
+  container.innerHTML = results.map(product => `
+    <div class="search-result">
+      <button data-search-product="${product.id}">${product.name}</button>
+      <span>${money(product.price)}</span>
+    </div>
+  `).join("");
+}
+
+document.getElementById("searchInput").addEventListener("input", event => {
+  showSearchResults(event.target.value);
+});
+
+document.getElementById("searchForm").addEventListener("submit", event => {
+  event.preventDefault();
+  showSearchResults(document.getElementById("searchInput").value);
+});
+
+document.getElementById("searchResults").addEventListener("click", event => {
+  const button = event.target.closest("[data-search-product]");
+  if (!button) return;
+
+  closeSearch();
+  openQuickView(button.dataset.searchProduct);
+});
+
+document.getElementById("viewAll").addEventListener("click", event => {
+  event.preventDefault();
+  renderProducts(products);
+  document.getElementById("collection").scrollIntoView({ behavior: "smooth" });
+});
+
+/* ==========================================
+   MOBILE NAVIGATION
+========================================== */
+
+const mobileMenu = document.getElementById("mobileMenu");
+
+function openMenu() {
+  mobileMenu.classList.add("open");
+  mobileMenu.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked");
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove("open");
+  mobileMenu.setAttribute("aria-hidden", "true");
+
+  if (!cartDrawer.classList.contains("open") &&
+      !quickModal.classList.contains("open") &&
+      !searchPanel.classList.contains("open")) {
+    document.body.classList.remove("locked");
+  }
+}
+
+document.getElementById("menuToggle").addEventListener("click", openMenu);
+document.getElementById("menuClose").addEventListener("click", closeMenu);
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
+
+overlay.addEventListener("click", () => {
+  closeCart();
+  closeQuickView();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeCart();
+    closeQuickView();
+    closeSearch();
+    closeMenu();
+  }
+});
+
+/* ==========================================
    TOAST
-========================= */
+========================================== */
 
 function showToast(message) {
   toastElement.textContent = message;
@@ -1731,385 +2411,25 @@ function showToast(message) {
   }, 2600);
 }
 
-/* =========================
-   PRODUCT RENDERING
-========================= */
-
-function renderProducts() {
-  productGrid.innerHTML = products.map(product => `
-    <article class="product-card">
-      <div class="product-image-wrap">
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy">
-
-        ${product.badge ? `
-          <span class="product-tag">${product.badge}</span>
-        ` : ""}
-
-        <button
-          class="quick-view"
-          data-quick-view="${product.id}"
-          aria-label="Quick view ${product.name}">
-          Quick view +
-        </button>
-      </div>
-
-      <div class="product-info">
-        <h3 class="product-name">${product.name}</h3>
-        <p class="product-category">${product.category}</p>
-
-        <p class="product-price">
-          ${money(product.price)}
-          ${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}
-        </p>
-
-        <div class="color-dots" aria-label="Available colors">
-          ${product.colors.map(color => `
-            <span class="color-dot" style="background:${color}"></span>
-          `).join("")}
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
-
-productGrid.addEventListener("click", event => {
-  const button = event.target.closest("[data-quick-view]");
-  if (!button) return;
-
-  const product = products.find(
-    item => item.id === Number(button.dataset.quickView)
-  );
-
-  if (product) openQuickView(product);
-});
-
-/* =========================
-   CART STORAGE
-========================= */
-
-function loadCart() {
-  try {
-    const saved = JSON.parse(localStorage.getItem("velora-cart") || "[]");
-    return Array.isArray(saved) ? saved : [];
-  } catch {
-    return [];
-  }
-}
-
-let cart = loadCart();
-
-function saveCart() {
-  try {
-    localStorage.setItem("velora-cart", JSON.stringify(cart));
-  } catch {
-    // Cart remains usable for the current page session.
-  }
-}
-
-function getCartQuantity() {
-  return cart.reduce((total, item) => total + item.quantity, 0);
-}
-
-function getCartSubtotal() {
-  return cart.reduce((total, item) => {
-    const product = products.find(product => product.id === item.id);
-    return total + (product ? product.price * item.quantity : 0);
-  }, 0);
-}
-
-function updateCartCount() {
-  cartCount.textContent = getCartQuantity();
-  drawerItemCount.textContent = `(${getCartQuantity()})`;
-}
-
-function addToCart(product, size) {
-  if (!product || !size) {
-    showToast("Please select a size first.");
-    return;
-  }
-
-  const existing = cart.find(
-    item => item.id === product.id && item.size === size
-  );
-
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({
-      id: product.id,
-      size,
-      quantity: 1
-    });
-  }
-
-  saveCart();
-  renderCart();
-  showToast(`${product.name} added to your bag.`);
-}
-
-function changeQuantity(id, size, amount) {
-  const item = cart.find(
-    item => item.id === id && item.size === size
-  );
-
-  if (!item) return;
-
-  item.quantity += amount;
-
-  if (item.quantity <= 0) {
-    cart = cart.filter(
-      cartItem => !(cartItem.id === id && cartItem.size === size)
-    );
-  }
-
-  saveCart();
-  renderCart();
-}
-
-function removeCartItem(id, size) {
-  cart = cart.filter(
-    item => !(item.id === id && item.size === size)
-  );
-
-  saveCart();
-  renderCart();
-}
-
-function renderCart() {
-  updateCartCount();
-
-  if (!cart.length) {
-    cartItemsElement.innerHTML = `
-      <div class="empty-cart">
-        <p>Your bag is currently empty.</p>
-        <p>A good wardrobe starts with a good choice.</p>
-      </div>
-    `;
-  } else {
-    cartItemsElement.innerHTML = cart.map(item => {
-      const product = products.find(
-        product => product.id === item.id
-      );
-
-      if (!product) return "";
-
-      return `
-        <div class="cart-item">
-          <img src="${product.image}" alt="${product.name}">
-
-          <div>
-            <h4>${product.name}</h4>
-            <p>Size: ${item.size}</p>
-            <p>${money(product.price)}</p>
-
-            <div class="quantity-controls">
-              <button
-                data-quantity="-1"
-                data-id="${item.id}"
-                data-size="${item.size}"
-                aria-label="Decrease quantity">−</button>
-
-              <span>${item.quantity}</span>
-
-              <button
-                data-quantity="1"
-                data-id="${item.id}"
-                data-size="${item.size}"
-                aria-label="Increase quantity">+</button>
-            </div>
-
-            <button
-              class="remove-item"
-              data-remove-id="${item.id}"
-              data-remove-size="${item.size}">
-              Remove
-            </button>
-          </div>
-
-          <strong class="cart-item-price">
-            ${money(product.price * item.quantity)}
-          </strong>
-        </div>
-      `;
-    }).join("");
-  }
-
-  cartSubtotal.textContent = money(getCartSubtotal());
-}
-
-cartItemsElement.addEventListener("click", event => {
-  const quantityButton = event.target.closest("[data-quantity]");
-
-  if (quantityButton) {
-    changeQuantity(
-      Number(quantityButton.dataset.id),
-      quantityButton.dataset.size,
-      Number(quantityButton.dataset.quantity)
-    );
-    return;
-  }
-
-  const removeButton = event.target.closest("[data-remove-id]");
-
-  if (removeButton) {
-    removeCartItem(
-      Number(removeButton.dataset.removeId),
-      removeButton.dataset.removeSize
-    );
-  }
-});
-
-/* =========================
-   CART DRAWER
-========================= */
-
-function openCart() {
-  cartDrawer.classList.add("open");
-  drawerBackdrop.classList.add("open");
-  document.body.classList.add("no-scroll");
-}
-
-function closeCart() {
-  cartDrawer.classList.remove("open");
-  drawerBackdrop.classList.remove("open");
-  document.body.classList.remove("no-scroll");
-}
-
-document.getElementById("cartButton").addEventListener("click", openCart);
-document.getElementById("closeCart").addEventListener("click", closeCart);
-drawerBackdrop.addEventListener("click", closeCart);
-
-/* =========================
-   QUICK VIEW
-========================= */
-
-function openQuickView(product) {
-  selectedProduct = product;
-  selectedSize = null;
-
-  document.getElementById("modalImage").src = product.image;
-  document.getElementById("modalImage").alt = product.name;
-  document.getElementById("modalCategory").textContent = product.category;
-  document.getElementById("modalProductName").textContent = product.name;
-
-  document.getElementById("modalPrice").textContent = money(product.price);
-  document.getElementById("modalDescription").textContent = product.description;
-
-  document.getElementById("sizeOptions").innerHTML =
-    product.sizes.map(size => `
-      <button class="size-option" data-size="${size}">${size}</button>
-    `).join("");
-
-  modalBackdrop.classList.add("open");
-  document.body.classList.add("no-scroll");
-}
-
-function closeQuickView() {
-  modalBackdrop.classList.remove("open");
-
-  if (!cartDrawer.classList.contains("open") &&
-      !document.getElementById("mobileNav").classList.contains("open")) {
-    document.body.classList.remove("no-scroll");
-  }
-}
-
-document.getElementById("sizeOptions").addEventListener("click", event => {
-  const button = event.target.closest("[data-size]");
-  if (!button) return;
-
-  selectedSize = button.dataset.size;
-
-  document.querySelectorAll(".size-option").forEach(option => {
-    option.classList.toggle("selected", option === button);
-  });
-});
-
-document.getElementById("modalAddButton").addEventListener("click", () => {
-  if (!selectedProduct) return;
-
-  if (!selectedSize) {
-    showToast("Please choose your size.");
-    return;
-  }
-
-  addToCart(selectedProduct, selectedSize);
-  closeQuickView();
-});
-
-document.getElementById("closeQuickModal").addEventListener("click", closeQuickView);
-
-modalBackdrop.addEventListener("click", event => {
-  if (event.target === modalBackdrop) closeQuickView();
-});
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-const mobileNav = document.getElementById("mobileNav");
-
-document.getElementById("menuToggle").addEventListener("click", () => {
-  mobileNav.classList.add("open");
-  document.body.classList.add("no-scroll");
-});
-
-function closeMobileMenu() {
-  mobileNav.classList.remove("open");
-
-  if (!cartDrawer.classList.contains("open") &&
-      !modalBackdrop.classList.contains("open")) {
-    document.body.classList.remove("no-scroll");
-  }
-}
-
-document.getElementById("closeMobileNav").addEventListener("click", closeMobileMenu);
-
-mobileNav.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", closeMobileMenu);
-});
-
-/* =========================
-   SEARCH
-========================= */
-
-document.getElementById("searchButton").addEventListener("click", () => {
-  const query = prompt("What are you looking for?");
-
-  if (!query || !query.trim()) return;
-
-  const match = products.find(product =>
-    product.name.toLowerCase().includes(query.trim().toLowerCase()) ||
-    product.category.toLowerCase().includes(query.trim().toLowerCase())
-  );
-
-  if (match) {
-    openQuickView(match);
-  } else {
-    showToast("No matching products found.");
-  }
-});
-
-/* =========================
+/* ==========================================
    NEWSLETTER DEMO
-========================= */
+========================================== */
 
 document.getElementById("newsletterForm").addEventListener("submit", event => {
   event.preventDefault();
 
   const email = document.getElementById("newsletterEmail").value.trim();
+  const message = document.getElementById("newsletterMessage");
 
   if (!email) return;
 
-  showToast("Thank you for your interest in VĒLORA.");
-  event.target.reset();
+  message.textContent = "Thanks for your interest. Connect a newsletter service to save subscriptions.";
+  document.getElementById("newsletterEmail").value = "";
 });
 
-/* =========================
-   CHECKOUT DEMO
-========================= */
+/* ==========================================
+   DEMO CHECKOUT
+========================================== */
 
 document.getElementById("checkoutButton").addEventListener("click", () => {
   if (!cart.length) {
@@ -2117,360 +2437,611 @@ document.getElementById("checkoutButton").addEventListener("click", () => {
     return;
   }
 
-  showToast("Demo storefront: connect a payment provider to enable checkout.");
+  showToast("Demo storefront: connect a checkout provider to accept orders.");
 });
-
-/* =========================
-   KEYBOARD CONTROLS
-========================= */
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeCart();
-    closeQuickView();
-    closeMobileMenu();
-  }
-});
-
-/* =========================
-   INITIALIZE
-========================= */
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-renderProducts();
-renderCart();
+/* ==========================================
+   SCROLL REVEALS
+========================================== */
 
-/* =========================
-   THREE.JS 3D HERO
-========================= */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-(async function initialize3DHero() {
-  const container = document.getElementById("heroCanvas");
+let revealObserver;
 
-  if (!container) return;
+function observeReveals() {
+  if (revealObserver) revealObserver.disconnect();
 
+  revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -35px 0px"
+  });
+
+  document.querySelectorAll(
+    ".product-card, .editorial-card, .reveal"
+  ).forEach(element => {
+    if (!element.classList.contains("visible")) {
+      revealObserver.observe(element);
+    }
+  });
+}
+
+observeReveals();
+
+/* ==========================================
+   SUBTLE PRODUCT TILT
+========================================== */
+
+function attachProductTilt() {
+  if (reduceMotion || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    return;
+  }
+
+  document.querySelectorAll(".product-card").forEach(card => {
+    if (card.dataset.tiltReady) return;
+    card.dataset.tiltReady = "true";
+
+    card.addEventListener("pointermove", event => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+
+      const rotateY = (x - .5) * 5;
+      const rotateX = (.5 - y) * 4;
+
+      card.style.transform =
+        `perspective(900px) translateY(0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
+  });
+}
+
+/* ==========================================
+   HEADER SCROLL STATE
+========================================== */
+
+const siteHeader = document.getElementById("siteHeader");
+
+function updateHeader() {
+  siteHeader.classList.toggle("scrolled", window.scrollY > 20);
+}
+
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
+
+/* ==========================================
+   THREE.JS — INTERACTIVE SCULPTURE
+========================================== */
+
+const canvas = document.getElementById("heroCanvas");
+const hero = document.getElementById("hero");
+const hero3D = document.getElementById("hero3D");
+
+let renderer;
+let scene;
+let camera;
+let sculpture;
+let sculptureGroup;
+let rings = [];
+let floatingObjects = [];
+let groundShadow;
+let animationFrame = 0;
+let sceneReady = false;
+
+const pointer = { x: 0, y: 0 };
+const targetRotation = { x: 0, y: 0 };
+const dragState = {
+  active: false,
+  startX: 0,
+  startY: 0,
+  lastX: 0,
+  lastY: 0
+};
+
+let scrollProgress = 0;
+let smoothScrollProgress = 0;
+let pageScrollY = window.scrollY;
+let lastFrameTime = 0;
+let isHeroVisible = true;
+
+const clock = new THREE.Clock();
+
+function createChromeMaterial() {
+  return new THREE.MeshStandardMaterial({
+    color: 0xd6d2ca,
+    metalness: 0.94,
+    roughness: 0.19,
+    envMapIntensity: 1.15
+  });
+}
+
+function createMetalSphere(radius, material, x, y, z, scale = 1) {
+  const geometry = new THREE.SphereGeometry(radius, 40, 32);
+  const mesh = new THREE.Mesh(geometry, material);
+
+  mesh.position.set(x, y, z);
+  mesh.scale.setScalar(scale);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+
+  return mesh;
+}
+
+function addRing(parent, radius, tube, color, opacity, rotation, position) {
+  const geometry = new THREE.TorusGeometry(radius, tube, 12, 150);
+
+  const material = new THREE.MeshStandardMaterial({
+    color,
+    metalness: .85,
+    roughness: .28,
+    transparent: true,
+    opacity
+  });
+
+  const ring = new THREE.Mesh(geometry, material);
+  ring.rotation.set(rotation.x, rotation.y, rotation.z);
+  ring.position.set(position.x, position.y, position.z);
+  ring.castShadow = false;
+
+  parent.add(ring);
+  rings.push(ring);
+
+  return ring;
+}
+
+function createSculpture() {
+  sculptureGroup = new THREE.Group();
+  sculpture = new THREE.Group();
+  sculptureGroup.add(sculpture);
+
+  const chrome = createChromeMaterial();
+
+  const darkMetal = new THREE.MeshStandardMaterial({
+    color: 0x7b766d,
+    metalness: .96,
+    roughness: .25
+  });
+
+  const paleMetal = new THREE.MeshStandardMaterial({
+    color: 0xe6e1d8,
+    metalness: .9,
+    roughness: .2
+  });
+
+  // Abstract torso
+  const torso = createMetalSphere(1, chrome, 0, .3, 0);
+  torso.scale.set(.74, 1.22, .43);
+  sculpture.add(torso);
+
+  // Upper form
+  const upper = createMetalSphere(.8, paleMetal, 0, 1.55, 0);
+  upper.scale.set(1.05, .65, .53);
+  sculpture.add(upper);
+
+  // Neck
+  const neck = new THREE.Mesh(
+    new THREE.CylinderGeometry(.21, .26, .55, 36),
+    chrome
+  );
+  neck.position.y = 2.15;
+  neck.castShadow = true;
+  sculpture.add(neck);
+
+  // Head
+  const head = createMetalSphere(.49, chrome, 0, 2.83, 0, 1);
+  head.scale.set(.85, 1.08, .83);
+  sculpture.add(head);
+
+  // Abstract shoulders
+  const shoulderLeft = createMetalSphere(.48, chrome, -.88, 1.42, 0);
+  shoulderLeft.scale.set(1.05, .56, .52);
+  sculpture.add(shoulderLeft);
+
+  const shoulderRight = createMetalSphere(.48, chrome, .88, 1.42, 0);
+  shoulderRight.scale.set(1.05, .56, .52);
+  sculpture.add(shoulderRight);
+
+  // Arms
+  const armGeometry = new THREE.CapsuleGeometry(.18, 1.25, 8, 18);
+
+  const armLeft = new THREE.Mesh(armGeometry, chrome);
+  armLeft.position.set(-1.03, .45, 0);
+  armLeft.rotation.z = -.18;
+  armLeft.castShadow = true;
+  sculpture.add(armLeft);
+
+  const armRight = new THREE.Mesh(armGeometry, chrome);
+  armRight.position.set(1.03, .45, 0);
+  armRight.rotation.z = .18;
+  armRight.castShadow = true;
+  sculpture.add(armRight);
+
+  // Lower body
+  const lower = createMetalSphere(.8, darkMetal, 0, -1.02, 0);
+  lower.scale.set(.78, .72, .48);
+  sculpture.add(lower);
+
+  // Decorative floating chrome spheres
+  const floatPositions = [
+    [-1.65, 2.15, .4, .17],
+    [1.72, 2.65, -.1, .12],
+    [1.65, -.45, .4, .2],
+    [-1.4, -.95, -.2, .11],
+    [.95, 3.55, .1, .1]
+  ];
+
+  floatPositions.forEach((item, index) => {
+    const material = index % 2 ? chrome : paleMetal;
+    const sphere = createMetalSphere(item[3], material, item[0], item[1], item[2]);
+
+    sculpture.add(sphere);
+
+    floatingObjects.push({
+      mesh: sphere,
+      baseY: item[1],
+      phase: index * 1.3,
+      amplitude: .08 + index * .008
+    });
+  });
+
+  // Orbital rings
+  addRing(
+    sculptureGroup, 1.75, .014, 0xb19a79, .85,
+    { x: 1.05, y: .3, z: .35 },
+    { x: 0, y: .35, z: 0 }
+  );
+
+  addRing(
+    sculptureGroup, 2.12, .009, 0x777269, .6,
+    { x: .4, y: .75, z: 1.05 },
+    { x: 0, y: .15, z: 0 }
+  );
+
+  addRing(
+    sculptureGroup, 1.25, .012, 0xd2c9b8, .9,
+    { x: 1.35, y: .2, z: -.5 },
+    { x: 0, y: .15, z: 0 }
+  );
+
+  scene.add(sculptureGroup);
+}
+
+function createLighting() {
+  const ambient = new THREE.HemisphereLight(0xfaf7ef, 0x766f63, 2.0);
+  scene.add(ambient);
+
+  const key = new THREE.DirectionalLight(0xffffff, 3.1);
+  key.position.set(4, 7, 6);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.camera.left = -6;
+  key.shadow.camera.right = 6;
+  key.shadow.camera.top = 6;
+  key.shadow.camera.bottom = -6;
+  scene.add(key);
+
+  const rim = new THREE.PointLight(0xc6a779, 48, 15);
+  rim.position.set(-4, 2.5, -2);
+  scene.add(rim);
+
+  const fill = new THREE.PointLight(0xffffff, 32, 18);
+  fill.position.set(3, -1, 4);
+  scene.add(fill);
+
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(200, 200),
+    new THREE.ShadowMaterial({ opacity: .13 })
+  );
+
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.y = -2.45;
+  floor.receiveShadow = true;
+  scene.add(floor);
+
+  // A soft oval shadow beneath the sculpture
+  const shadowCanvas = document.createElement("canvas");
+  shadowCanvas.width = 128;
+  shadowCanvas.height = 128;
+
+  const ctx = shadowCanvas.getContext("2d");
+  const gradient = ctx.createRadialGradient(64, 64, 2, 64, 64, 62);
+
+  gradient.addColorStop(0, "rgba(45,40,30,.26)");
+  gradient.addColorStop(1, "rgba(45,40,30,0)");
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 128, 128);
+
+  const shadowTexture = new THREE.CanvasTexture(shadowCanvas);
+
+  groundShadow = new THREE.Mesh(
+    new THREE.PlaneGeometry(4.8, 2.2),
+    new THREE.MeshBasicMaterial({
+      map: shadowTexture,
+      transparent: true,
+      depthWrite: false
+    })
+  );
+
+  groundShadow.rotation.x = -Math.PI / 2;
+  groundShadow.position.set(0, -2.42, 0);
+  scene.add(groundShadow);
+}
+
+function updateCameraForSize() {
+  if (!camera || !renderer) return;
+
+  const width = hero.clientWidth;
+  const height = hero.clientHeight;
+  const mobile = width < 700;
+
+  camera.aspect = width / height;
+  camera.fov = mobile ? 39 : 35;
+  camera.position.set(mobile ? 0 : 0, .3, mobile ? 11.8 : 10.5);
+  camera.lookAt(0, .35, 0);
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height, false);
+
+  if (sculptureGroup) {
+    sculptureGroup.position.x = mobile ? .15 : 2.0;
+    sculptureGroup.position.y = mobile ? -1.05 : -.1;
+
+    const scale = mobile ? .77 : 1;
+    sculptureGroup.scale.setScalar(scale);
+  }
+}
+
+function initThree() {
   try {
-    const THREE = await import(
-      "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
-    );
+    const width = hero.clientWidth;
+    const height = hero.clientHeight;
 
-    const scene = new THREE.Scene();
+    scene = new THREE.Scene();
+    scene.background = null;
 
-    scene.fog = new THREE.FogExp2(0xaaa79f, 0.045);
-
-    const camera = new THREE.PerspectiveCamera(
+    camera = new THREE.PerspectiveCamera(
       35,
-      container.clientWidth / container.clientHeight,
-      0.1,
+      width / height,
+      .1,
       100
     );
 
-    camera.position.set(0, 0, 9.5);
-
-    const renderer = new THREE.WebGLRenderer({
+    renderer = new THREE.WebGLRenderer({
+      canvas,
       alpha: true,
-      antialias: true,
-      powerPreference: "high-performance"
+      antialias: window.devicePixelRatio < 2
     });
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+    renderer.setSize(width, height, false);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;
 
-    container.appendChild(renderer.domElement);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    const sculpture = new THREE.Group();
-    scene.add(sculpture);
+    createLighting();
+    createSculpture();
+    updateCameraForSize();
 
-    /* Reflective chrome material */
+    sceneReady = true;
 
-    const chrome = new THREE.MeshStandardMaterial({
-      color: 0xd6d6d6,
-      metalness: 1,
-      roughness: 0.19
-    });
-
-    const darkChrome = new THREE.MeshStandardMaterial({
-      color: 0x777777,
-      metalness: 0.95,
-      roughness: 0.24
-    });
-
-    const gold = new THREE.MeshStandardMaterial({
-      color: 0xb69b73,
-      metalness: 0.8,
-      roughness: 0.25
-    });
-
-    /* Lighting */
-
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x55514a, 2.2));
-
-    const keyLight = new THREE.DirectionalLight(0xffffff, 4);
-    keyLight.position.set(4, 6, 7);
-    scene.add(keyLight);
-
-    const sideLight = new THREE.DirectionalLight(0xffffff, 3);
-    sideLight.position.set(-5, 2, 3);
-    scene.add(sideLight);
-
-    const rimLight = new THREE.PointLight(0xe9d6b8, 35, 20);
-    rimLight.position.set(1, 3, -3);
-    scene.add(rimLight);
-
-    /* Geometry helpers */
-
-    function makeSphere(parent, x, y, z, sx, sy, sz, material) {
-      const geometry = new THREE.SphereGeometry(1, 40, 32);
-      const mesh = new THREE.Mesh(geometry, material);
-
-      mesh.position.set(x, y, z);
-      mesh.scale.set(sx, sy, sz);
-      parent.add(mesh);
-
-      return mesh;
-    }
-
-    function makeCylinder(parent, x, y, z, radiusTop, radiusBottom, height, material) {
-      const geometry = new THREE.CylinderGeometry(
-        radiusTop,
-        radiusBottom,
-        height,
-        40,
-        1
-      );
-
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(x, y, z);
-      parent.add(mesh);
-
-      return mesh;
-    }
-
-    /* Abstract mannequin sculpture */
-
-    makeSphere(sculpture, 0, 1.55, 0, 0.62, 0.76, 0.48, chrome);
-
-    const neck = makeCylinder(
-      sculpture, 0, 0.85, 0, 0.23, 0.29, 0.58, darkChrome
-    );
-
-    neck.rotation.z = -0.08;
-
-    makeSphere(sculpture, 0, 0.25, 0, 0.77, 0.95, 0.43, chrome);
-
-    makeSphere(sculpture, -0.73, 0.45, 0, 0.29, 0.3, 0.3, chrome);
-    makeSphere(sculpture, 0.73, 0.45, 0, 0.29, 0.3, 0.3, chrome);
-
-    const leftArm = makeCylinder(
-      sculpture, -0.87, -0.35, 0, 0.19, 0.12, 1.3, darkChrome
-    );
-
-    leftArm.rotation.z = -0.12;
-
-    const rightArm = makeCylinder(
-      sculpture, 0.87, -0.35, 0, 0.19, 0.12, 1.3, chrome
-    );
-
-    rightArm.rotation.z = 0.12;
-
-    makeSphere(sculpture, -0.99, -1.0, 0, 0.15, 0.17, 0.14, chrome);
-    makeSphere(sculpture, 0.99, -1.0, 0, 0.15, 0.17, 0.14, chrome);
-
-    /* Floating orbit rings */
-
-    const ringMaterial = new THREE.MeshStandardMaterial({
-      color: 0xeee6d9,
-      metalness: 0.9,
-      roughness: 0.25,
-      side: THREE.DoubleSide
-    });
-
-    const ring1 = new THREE.Mesh(
-      new THREE.TorusGeometry(1.75, 0.018, 12, 160),
-      ringMaterial
-    );
-
-    ring1.rotation.set(1.1, 0.2, 0.35);
-    ring1.position.y = 0.1;
-    sculpture.add(ring1);
-
-    const ring2 = new THREE.Mesh(
-      new THREE.TorusGeometry(2.05, 0.012, 10, 160),
-      gold
-    );
-
-    ring2.rotation.set(0.45, 0.9, -0.35);
-    ring2.position.y = 0.1;
-    sculpture.add(ring2);
-
-    /* Floating decorative spheres */
-
-    const floatingObjects = [];
-
-    for (let i = 0; i < 9; i++) {
-      const radius = i % 3 === 0 ? 0.09 : 0.045;
-
-      const material = i % 3 === 0 ? gold : chrome;
-
-      const object = makeSphere(
-        sculpture,
-        Math.sin(i * 2.1) * 2.1,
-        Math.cos(i * 1.7) * 1.8,
-        Math.cos(i * 2.3) * 0.8,
-        radius,
-        radius,
-        radius,
-        material
-      );
-
-      floatingObjects.push({
-        object,
-        baseY: object.position.y,
-        phase: i * 0.8
-      });
-    }
-
-    /* Ground shadow */
-
-    const shadowMaterial = new THREE.MeshBasicMaterial({
-      color: 0x393833,
-      transparent: true,
-      opacity: 0.15,
-      depthWrite: false
-    });
-
-    const shadow = new THREE.Mesh(
-      new THREE.CircleGeometry(1.6, 64),
-      shadowMaterial
-    );
-
-    shadow.rotation.x = -Math.PI / 2;
-    shadow.position.set(0, -1.9, -0.25);
-    shadow.scale.set(1.1, 0.42, 1);
-    sculpture.add(shadow);
-
-    /* Responsive sculpture position */
-
-    function setResponsivePosition() {
-      const isMobile = window.innerWidth <= 700;
-
-      sculpture.scale.setScalar(isMobile ? 0.82 : 1);
-
-      if (isMobile) {
-        sculpture.position.set(0.5, 0.25, 0);
-        camera.position.set(0, 0, 10);
-      } else {
-        sculpture.position.set(1.7, 0, 0);
-        camera.position.set(0, 0, 9.5);
-      }
-
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(container.clientWidth, container.clientHeight);
-    }
-
-    setResponsivePosition();
-
-    window.addEventListener("resize", setResponsivePosition);
-
-    /* Pointer interaction */
-
-    let targetRotationX = 0;
-    let targetRotationY = 0;
-
-    container.addEventListener("pointermove", event => {
-      const rect = container.getBoundingClientRect();
-
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-
-      targetRotationY = (x - 0.5) * 0.55;
-      targetRotationX = (y - 0.5) * 0.25;
-    });
-
-    container.addEventListener("pointerleave", () => {
-      targetRotationX = 0;
-      targetRotationY = 0;
-    });
-
-    /* Animation loop with safe pause/resume */
-
-    const clock = new THREE.Clock();
-    let animationFrame = null;
-    let running = false;
-
-    function animate() {
-      if (!running) return;
-
-      animationFrame = requestAnimationFrame(animate);
-
-      const elapsed = clock.getElapsedTime();
-
-      sculpture.rotation.y +=
-        (targetRotationY - sculpture.rotation.y) * 0.035;
-
-      sculpture.rotation.x +=
-        (targetRotationX - sculpture.rotation.x) * 0.035;
-
-      sculpture.position.y =
-        (window.innerWidth <= 700 ? 0.25 : 0) +
-        Math.sin(elapsed * 0.65) * 0.09;
-
-      ring1.rotation.z = elapsed * 0.12;
-      ring2.rotation.y = elapsed * 0.16;
-      ring2.rotation.z = Math.sin(elapsed * 0.3) * 0.15;
-
-      floatingObjects.forEach(item => {
-        item.object.position.y =
-          item.baseY + Math.sin(elapsed * 0.8 + item.phase) * 0.13;
-
-        item.object.rotation.x += 0.002;
-        item.object.rotation.y += 0.003;
-      });
-
-      renderer.render(scene, camera);
-    }
-
-    function startAnimation() {
-      if (running) return;
-
-      running = true;
-      clock.start();
-      animate();
-    }
-
-    function stopAnimation() {
-      running = false;
-
-      if (animationFrame !== null) {
-        cancelAnimationFrame(animationFrame);
-        animationFrame = null;
-      }
-    }
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        stopAnimation();
-      } else {
-        startAnimation();
-      }
-    });
-
-    if (!document.hidden) {
-      startAnimation();
-    }
+    if (!reduceMotion) animate();
+    else renderer.render(scene, camera);
 
   } catch (error) {
-    console.error("VĒLORA 3D hero could not initialize:", error);
-    container.style.display = "none";
+    console.error("3D scene could not be initialized:", error);
+    hero3D.style.display = "none";
   }
-})();
+}
+
+function updateScrollProgress() {
+  const rect = hero.getBoundingClientRect();
+  const travel = Math.max(1, hero.offsetHeight);
+
+  scrollProgress = THREE.MathUtils.clamp(
+    -rect.top / travel,
+    0,
+    1
+  );
+}
+
+function animate(time = 0) {
+  if (!sceneReady || !renderer || !scene || !camera) return;
+
+  animationFrame = requestAnimationFrame(animate);
+
+  if (!isHeroVisible || document.hidden) return;
+
+  const elapsed = clock.getElapsedTime();
+  const delta = Math.min(.05, (time - lastFrameTime) / 1000 || .016);
+
+  lastFrameTime = time;
+
+  updateScrollProgress();
+
+  // Smooth scroll progress prevents abrupt jumps
+  smoothScrollProgress +=
+    (scrollProgress - smoothScrollProgress) * (1 - Math.exp(-delta * 7));
+
+  // Scroll controls the entire 3D composition
+  if (sculptureGroup) {
+    const scrollTurn = smoothScrollProgress * Math.PI * 1.65;
+
+    sculpture.rotation.y +=
+      (targetRotation.y + scrollTurn - sculpture.rotation.y) * .045;
+
+    sculpture.rotation.x +=
+      (targetRotation.x - sculpture.rotation.x) * .045;
+
+    sculpture.rotation.z =
+      Math.sin(elapsed * .25) * .025 +
+      smoothScrollProgress * .1;
+
+    // Shift the sculpture as the user leaves the hero
+    const targetX = (hero.clientWidth < 700 ? .15 : 2.0)
+      + smoothScrollProgress * (hero.clientWidth < 700 ? .3 : -.9);
+
+    const targetY = (hero.clientWidth < 700 ? -1.05 : -.1)
+      - smoothScrollProgress * 1.25;
+
+    sculptureGroup.position.x +=
+      (targetX - sculptureGroup.position.x) * .035;
+
+    sculptureGroup.position.y +=
+      (targetY - sculptureGroup.position.y) * .035;
+
+    // A controlled scale transition during the scroll
+    const baseScale = hero.clientWidth < 700 ? .77 : 1;
+    const targetScale = baseScale * (1 - smoothScrollProgress * .14);
+
+    sculptureGroup.scale.lerp(
+      new THREE.Vector3(targetScale, targetScale, targetScale),
+      .04
+    );
+  }
+
+  // Floating details
+  floatingObjects.forEach(object => {
+    object.mesh.position.y =
+      object.baseY + Math.sin(elapsed * .7 + object.phase) * object.amplitude;
+  });
+
+  // Orbiting geometry responds to scroll as well
+  rings.forEach((ring, index) => {
+    const direction = index % 2 === 0 ? 1 : -1;
+
+    ring.rotation.z += direction * .0015;
+    ring.rotation.y += direction * .0008;
+
+    ring.rotation.z += direction * smoothScrollProgress * .0006;
+  });
+
+  if (groundShadow) {
+    groundShadow.material.opacity = .8 - smoothScrollProgress * .2;
+  }
+
+  renderer.render(scene, camera);
+}
+
+/* Pointer motion: subtle, smooth, and non-blocking */
+hero3D.addEventListener("pointermove", event => {
+  if (dragState.active) {
+    const dx = event.clientX - dragState.lastX;
+    const dy = event.clientY - dragState.lastY;
+
+    targetRotation.y += dx * .006;
+    targetRotation.x += dy * .004;
+
+    targetRotation.x = THREE.MathUtils.clamp(
+      targetRotation.x,
+      -.55,
+      .55
+    );
+
+    dragState.lastX = event.clientX;
+    dragState.lastY = event.clientY;
+
+    return;
+  }
+
+  const rect = hero3D.getBoundingClientRect();
+
+  pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+
+  targetRotation.y += (pointer.x * .16 - targetRotation.y) * .035;
+  targetRotation.x += (pointer.y * .1 - targetRotation.x) * .035;
+}, { passive: true });
+
+hero3D.addEventListener("pointerdown", event => {
+  // Drag only with a mouse or pen; touch remains available for scrolling.
+  if (event.pointerType === "touch") return;
+
+  dragState.active = true;
+  dragState.startX = event.clientX;
+  dragState.startY = event.clientY;
+  dragState.lastX = event.clientX;
+  dragState.lastY = event.clientY;
+
+  try {
+    hero3D.setPointerCapture(event.pointerId);
+  } catch {}
+});
+
+hero3D.addEventListener("pointerup", () => {
+  dragState.active = false;
+});
+
+hero3D.addEventListener("pointercancel", () => {
+  dragState.active = false;
+});
+
+hero3D.addEventListener("lostpointercapture", () => {
+  dragState.active = false;
+});
+
+/* Keep 3D rendering lightweight when hero is offscreen */
+const heroObserver = new IntersectionObserver(entries => {
+  isHeroVisible = entries[0].isIntersecting;
+}, { threshold: 0 });
+
+heroObserver.observe(hero);
+
+window.addEventListener("resize", () => {
+  if (sceneReady) updateCameraForSize();
+}, { passive: true });
+
+/* Pause rendering in hidden browser tabs */
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && sceneReady && !reduceMotion) {
+    clock.start();
+    lastFrameTime = 0;
+  }
+});
+
+/* Initialize the 3D experience */
+initThree();
+
+/* Parallax for the campaign image */
+const campaignImage = document.getElementById("campaignImage");
+
+if (!reduceMotion && campaignImage) {
+  let parallaxQueued = false;
+
+  window.addEventListener("scroll", () => {
+    if (parallaxQueued) return;
+
+    parallaxQueued = true;
+
+    requestAnimationFrame(() => {
+      const rect = campaignImage.parentElement.getBoundingClientRect();
+      const viewport = window.innerHeight;
+
+      if (rect.bottom > 0 && rect.top < viewport) {
+        const progress = (viewport - rect.top) / (viewport + rect.height);
+        const offset = (progress - .5) * 45;
+        campaignImage.style.transform = `translateY(${offset}px)`;
+      }
+
+      parallaxQueued = false;
+    });
+  }, { passive: true });
+}
 </script>
 
 </body>
-   </html>
+      </html>
